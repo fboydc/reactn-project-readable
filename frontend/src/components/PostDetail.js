@@ -5,6 +5,7 @@ import * as actions from '../actions/';
 import { connect } from 'react-redux';
 import  '../css/framework.css';
 import  '../css/postdetail.css';
+import  '../css/comments.css';
 import { Link } from 'react-router-dom';
 
 
@@ -21,9 +22,11 @@ class PostDetail extends Component {
 
 
 	render(){
-		const {title, body, author, date, voteScore, comments } = this.props.currentPost;
+		const {title, body, author, date, voteScore, comments} = this.props.currentPost;
+
+		console.log("comments", comments);
 		return(
-			<div className="grid postdetail-grid">
+			<div className="postdetail-grid">
 				<div className="row">
 					<div className="col-12">
 						<Link to="/">Take me back</Link>
@@ -50,6 +53,40 @@ class PostDetail extends Component {
 				<div className="row">
 					<div className="col-12">
 						<p className="postdetail-body">{body}</p>
+					</div>
+				</div>
+				<div className="comments-grid">
+					<div className="row">
+						<div className="col-6">
+							<h3 className="comments-section-title">Comments</h3>
+						</div>	
+						<div className="col-6">
+							<span className="right">add</span>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-12">
+							
+								{
+									comments.map((comment)=>(
+										<div className="grid">
+										<div className="row">
+											<div className="col-12">
+												<strong>{comment.author}:</strong>
+											</div>
+										</div>
+										<div className="row">
+											<div className="col-12">
+												<em>{comment.body}</em>
+											</div>
+										</div>
+										<hr/>
+										</div>
+
+									))
+								}
+							
+						</div>
 					</div>
 				</div>
 			</div>

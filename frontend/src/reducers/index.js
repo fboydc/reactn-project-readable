@@ -172,7 +172,7 @@ const categories = (state = { entries: []}, action)=>{
 	}
 }
 
-const currentPost = (state = {}, action) => {
+const currentPost = (state = { comments: []}, action) => {
 	switch(action.type){
 		case LOAD_POST:
 			const { id, category, title, author, body, timestamp, voteScore} = action;
@@ -181,10 +181,11 @@ const currentPost = (state = {}, action) => {
 				id: id,
 				category: category,
 				timestamp: timestamp,
-				title,
-				author,
-				body,
-				voteScore
+				title: title,
+				author: author,
+				body: body,
+				voteScore: voteScore,
+				comments: []
 			}
 		case FEED_COMMENTS:
 
