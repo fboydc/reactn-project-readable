@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 import * as api from '../utils/api';
 import { connect } from 'react-redux';
 import * as actions from '../actions/';
+import VotingOptions from './VotingOptions';
 
 class PostLine extends Component {
 
 	constructor(){
 		super();
 		this.deletePost = this.deletePost.bind(this);
-		this.upVote = this.upVote.bind(this);
-		this.downVote = this.downVote.bind(this);
 
 	}
 
@@ -21,16 +20,7 @@ class PostLine extends Component {
 		this.props.deletePost(id);
 	}
 
-	upVote(){
-		const { id } = this.props.post;
-		this.props.upVote(id);
 
-	}
-
-	downVote(){
-		const { id } = this.props.post;
-		this.props.downVote(id);
-	}
 
 
 
@@ -45,14 +35,16 @@ class PostLine extends Component {
 					</big>
 					<span className="right">
 						<Link to={`edit/${id}`}>edit</Link>|
-						<button onClick={this.deletePost}>delete</button>
+						<a href="" onClick={this.deletePost}>delete</a>
 					</span>
 
 				</div>
 				<div className="postlist-footer">
 					<div className="postlist-footer-row">
 						<span>&nbsp;</span>
-						<span className="postlist-footer-row-column2"><button onClick={this.upVote}>up</button>|<button onClick={this.downVote}>down</button></span>
+						<span className="right">
+							<VotingOptions id={id}/>
+						</span>
 					</div>
 					<div className="postlist-footer-row">
 						<span>By: {author}</span>
@@ -73,16 +65,6 @@ function mapDispatchToProps(dispatch){
 		deletePost: (id)=>{
 			api.deletePost(id).then((post)=>{
 				dispatch(actions.deletePost(post.id))
-			})
-		},
-		upVote: (id)=>{
-			api.postUpVote(id).then(()=>{
-				dispatch(actions.upvotePost(id))
-			})
-		},
-		downVote: (id)=>{
-			api.postDownVote(id).then(()=>{
-				dispatch(actions.downvotePost(id))
 			})
 		},
 		sortByScore: (id)=>{

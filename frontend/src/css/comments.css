@@ -1,8 +1,19 @@
 .comments-grid {
-	width: 80%;
+	border-radius: 2px;
+	padding: 20px;
+	width: 90%;
 	margin: 0 auto;
+	background-color: #DEC3BE;
 }
 
 .comments-section-title{
+
 	margin: 0;
+}
+
+.comment-body {
+	border-radius: 3px;
+	padding: 15px;
+	background-color: #3A4F41;
+	color: #FFFFFF;
 }

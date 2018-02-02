@@ -7,10 +7,23 @@ import  '../css/framework.css';
 import  '../css/postdetail.css';
 import  '../css/comments.css';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import Comments from './Comments';
+import VotingOptions from './VotingOptions';
+
 
 
 
 class PostDetail extends Component {
+
+
+	constructor(){
+		super();
+		this.deletePost = this.deletePost.bind(this);
+		this.state = {
+			redirect: false
+		}
+	}
 
 	componentWillMount(){
 		const { match: { params } } = this.props;
@@ -19,13 +32,28 @@ class PostDetail extends Component {
 
 	}
 
+	deletePost(){
+		const { id } = this.props.currentPost;
+
+		this.props.deletePost(id).then(()=>{
+			this.setState({redirect: true});
+		});
+	}
+
 
 
 	render(){
-		const {title, body, author, date, voteScore, comments} = this.props.currentPost;
+		const {id, title, body, author, date, voteScore, comments} = this.props.currentPost;
+		const { redirect } = this.state;
+		console.log("redirect", redirect);
 
-		console.log("comments", comments);
+		if(redirect){
+			return (redirect && (<Redirect to="/"/>))
+		}
+
+
 		return(
+
 			<div className="postdetail-grid">
 				<div className="row">
 					<div className="col-12">
@@ -46,8 +74,21 @@ class PostDetail extends Component {
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-12">
+					<div className="col-6">
 						By: <span className="author">{author}</span>
+					</div>
+					<div className="col-6">
+						<span className="right">
+							<VotingOptions id={id} currentPost={true}/>
+						</span>
+					</div>
+				</div>
+				<div>
+					<div className="row">
+						<div className="col-6">
+							<Link to={`../edit/${id}`}>edit</Link>|
+							<button onClick={this.deletePost}>delete</button>
+						</div>
 					</div>
 				</div>
 				<div className="row">
@@ -59,36 +100,17 @@ class PostDetail extends Component {
 					<div className="row">
 						<div className="col-6">
 							<h3 className="comments-section-title">Comments</h3>
-						</div>	
+						</div>
 						<div className="col-6">
 							<span className="right">add</span>
 						</div>
 					</div>
 					<div className="row">
-						<div className="col-12">
-							
-								{
-									comments.map((comment)=>(
-										<div className="grid">
-										<div className="row">
-											<div className="col-12">
-												<strong>{comment.author}:</strong>
-											</div>
-										</div>
-										<div className="row">
-											<div className="col-12">
-												<em>{comment.body}</em>
-											</div>
-										</div>
-										<hr/>
-										</div>
+						<Comments />
 
-									))
-								}
-							
-						</div>
 					</div>
 				</div>
+
 			</div>
 
 
@@ -99,6 +121,7 @@ class PostDetail extends Component {
 
 
 function mapStateToProps({ currentPost }){
+	console.log("current post", currentPost);
 	return {
 		currentPost: {
 			...currentPost,
@@ -118,7 +141,12 @@ function mapDispatchToProps(dispatch){
 			api.getComments(id).then((comments)=>{
 				dispatch(actions.feedComments(comments));
 			})
-		}
+		},
+		deletePost: (id) =>(
+			api.deletePost(id).then((post)=>{
+			dispatch(actions.deletePost(post.id))
+		}))
+
 	}
 }
 

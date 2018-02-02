@@ -178,6 +178,7 @@ const currentPost = (state = { comments: []}, action) => {
 			const { id, category, title, author, body, timestamp, voteScore} = action;
 
 			return {
+				...state,
 				id: id,
 				category: category,
 				timestamp: timestamp,
@@ -185,7 +186,6 @@ const currentPost = (state = { comments: []}, action) => {
 				author: author,
 				body: body,
 				voteScore: voteScore,
-				comments: []
 			}
 		case FEED_COMMENTS:
 
