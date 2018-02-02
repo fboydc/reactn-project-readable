@@ -1,0 +1,32 @@
+.input_form{
+	margin: auto;
+	width: 50%;
+}
+
+
+.input_form label {
+	margin-left: 50%;
+}
+
+.input_form input {
+	margin-right: 50%;
+	height: 30px;
+	width: 100%;
+}
+
+.input_form button {
+	float: right;
+	margin: auto;
+	width: 50%;
+	height: 30px;
+}
+
+.input_form textarea {
+	width: 100%;
+	resize: none;
+}
+
+select {
+	width: 100%;
+	height: 30px;
+}

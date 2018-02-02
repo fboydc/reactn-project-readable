@@ -1,0 +1,35 @@
+#posts {
+	border: 1px solid blue;
+	width: 70%;
+	margin-top: 0;
+	background-color: green;
+	margin-bottom: 30px;
+}
+
+
+.postlist-content {
+	width: 100%;
+	padding: 30px;
+}
+.postlist-header {
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+
+.right {
+	float: right;
+}
+
+.postlist-footer {
+	width: 100%;
+}
+
+
+.postlist-footer-row {
+	width: 100%;
+}
+
+.postlist-footer-row-column2 {
+	float: right;
+}
