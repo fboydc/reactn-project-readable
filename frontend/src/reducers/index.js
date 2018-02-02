@@ -9,6 +9,7 @@ import {
 	DOWN_VOTE_POST,
 	FEED_POSTS,
 	FEED_CATEGORIES,
+	FEED_COMMENTS,
 	DELETE_POST,
 	SORT_BY_SCORE,
 	SORT_BY_TIMESTAMP
@@ -75,6 +76,7 @@ const posts = (state = { entries: []} , action) => {
 				...state,
 				entries: action.posts
 			}
+
 
 		case UP_VOTE_POST:
 			return {
@@ -183,6 +185,13 @@ const currentPost = (state = {}, action) => {
 				author,
 				body,
 				voteScore
+			}
+		case FEED_COMMENTS:
+
+			return {
+				...state,
+				comments: action.comments
+
 			}
 		default:
 			return state

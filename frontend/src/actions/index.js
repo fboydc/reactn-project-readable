@@ -3,6 +3,7 @@ export const UP_VOTE_POST = 'UP_VOTE_POST';
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
 export const FEED_POSTS = 'FEED_POSTS';
 export const FEED_CATEGORIES = 'FEED_CATEGORIES';
+export const FEED_COMMENTS = 'FEED_COMMENTS';
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const LOAD_POST = 'LOAD_POST';
@@ -107,6 +108,14 @@ export const feedCategories = (categories) => {
 	return {
 		type: FEED_CATEGORIES,
 		categories
+	}
+}
+
+export const feedComments = (comments)=> {
+	return {
+		type: FEED_COMMENTS,
+		comments
+
 	}
 }
 
