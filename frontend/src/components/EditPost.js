@@ -85,8 +85,8 @@ class EditPost extends Component {
 
 	render(){
 
-		const { errors } = this.state;
- 		const { redirect } = this.state;
+		const { errors, redirect } = this.state;
+ 		const { category, id } = this.props.currentPost;
 
  		return(
  			<div className="grid">
@@ -103,7 +103,7 @@ class EditPost extends Component {
  				<div className="row">
  					<PostForm data={this.state} handlers={this.handlers} edit={true}/>
  					{redirect && (
- 						<Redirect to="/"/>
+ 						<Redirect to={`/${category}/${id}`}/>
  					)}
  				</div>
  			</div>
