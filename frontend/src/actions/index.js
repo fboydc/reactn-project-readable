@@ -4,12 +4,14 @@ export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
 export const FEED_POSTS = 'FEED_POSTS';
 export const FEED_CATEGORIES = 'FEED_CATEGORIES';
 export const FEED_COMMENTS = 'FEED_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const LOAD_POST = 'LOAD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const SORT_BY_SCORE = 'SORT_BY_SCORE';
 export const SORT_BY_TIMESTAMP = 'SORT_BY_TIMESTAMP';
+
 
 
 export const addPost = ({id, timestamp, title, body, author, category, voteScore, deleted, commentCount}) => {
@@ -116,6 +118,13 @@ export const feedComments = (comments)=> {
 		type: FEED_COMMENTS,
 		comments
 
+	}
+}
+
+export const addComment = (comment)=> {
+	return {
+		type: ADD_COMMENT,
+		comment
 	}
 }
 

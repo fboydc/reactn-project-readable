@@ -10,6 +10,7 @@ import {
 	FEED_POSTS,
 	FEED_CATEGORIES,
 	FEED_COMMENTS,
+	ADD_COMMENT,
 	DELETE_POST,
 	SORT_BY_SCORE,
 	SORT_BY_TIMESTAMP
@@ -109,8 +110,7 @@ const posts = (state = { entries: []} , action) => {
 					}
 
 
-					return entry
-
+					return entry;
 
 				})
 			}
@@ -194,10 +194,24 @@ const currentPost = (state = { comments: []}, action) => {
 				comments: action.comments
 
 			}
+		case ADD_COMMENT:
+
+			return{
+				...state,
+				comments:[
+					...state.comments,
+					{
+						...action.comment
+					}
+				]
+			}
+
 		default:
 			return state
 	}
 }
+
+
 
 
 export default combineReducers({

@@ -8,6 +8,7 @@ import  '../css/postdetail.css';
 import  '../css/comments.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import Modal from 'react-modal';
 import Comments from './Comments';
 import VotingOptions from './VotingOptions';
 
@@ -26,6 +27,7 @@ class PostDetail extends Component {
 	}
 
 	componentWillMount(){
+		Modal.setAppElement('body');
 		const { match: { params } } = this.props;
 		this.props.getPostDetails(params.post_id);
 		this.props.getComments(params.post_id);
@@ -110,8 +112,11 @@ class PostDetail extends Component {
 
 					</div>
 				</div>
+				<Modal isOpen={true} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
 
+				</Modal>
 			</div>
+
 
 
 			)

@@ -21,3 +21,21 @@
 .author {
 	color: #B9314F;
 }
+
+
+.postdetail-newcomment-modal {
+	width: 50%;
+	height: 100%;
+	background-color: #FFFFFF;
+	position: absolute;
+
+}
+
+.postdetail-newcomment-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+}
