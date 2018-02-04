@@ -25,9 +25,17 @@
 
 .postdetail-newcomment-modal {
 	width: 50%;
-	height: 100%;
-	background-color: #FFFFFF;
+	height: 70%;
+	margin: 0 auto;
 	position: absolute;
+	top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: #FFFF;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    padding: 20px;
 
 }
 
@@ -37,5 +45,10 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
+	background-color: rgba(255, 255, 255, 0.75);
 
+}
+
+.left {
+	float: left;
 }

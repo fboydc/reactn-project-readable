@@ -87,7 +87,7 @@ export const addComment = (postid, body, author) => (
 			author: author,
 			parentId: postid
 		})
-	})
+	}).then((response)=>(response.json()))
 );
 
 export const commentUpVote = (id) => (

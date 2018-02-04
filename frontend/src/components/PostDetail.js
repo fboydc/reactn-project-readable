@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import  '../css/framework.css';
 import  '../css/postdetail.css';
 import  '../css/comments.css';
+import { validate } from '../utils/commentsvalidator';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Modal from 'react-modal';
@@ -21,8 +22,17 @@ class PostDetail extends Component {
 	constructor(){
 		super();
 		this.deletePost = this.deletePost.bind(this);
+		this.openCommentsModal = this.openCommentsModal.bind(this);
+		this.closeCommentsModal = this.closeCommentsModal.bind(this);
+		this.handleCommentAuthorChange = this.handleCommentAuthorChange.bind(this);
+		this.handleCommentBodyChange = this.handleCommentBodyChange.bind(this);
+		this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
 		this.state = {
-			redirect: false
+			redirect: false,
+			newCommentModal: false,
+			commentAuthor: '',
+			commentBody: '',
+			errors: []
 		}
 	}
 
@@ -42,13 +52,45 @@ class PostDetail extends Component {
 		});
 	}
 
+	openCommentsModal(){
+		this.setState({newCommentModal: true});
+	}
+
+	closeCommentsModal(){
+		this.setState({newCommentModal: false, commentAuthor: '', commentBody: '', errors: []});
+	}
+
+	handleCommentAuthorChange(e){
+		this.setState({commentAuthor: e.target.value})
+	}
+
+	handleCommentBodyChange(e){
+		this.setState({commentBody: e.target.value})
+	}
+
+	handleCommentSubmit(){
+		const { commentAuthor, commentBody } = this.state;
+		const { id } = this.props.currentPost; 
+
+		const errors = validate(commentAuthor, commentBody);
+
+		if(errors.length > 0){
+			this.setState({ errors })
+			return;
+		}
+
+		this.props.addComment(id, commentAuthor, commentBody);
+		this.closeCommentsModal();
+
+	}	
+
+
+
 
 
 	render(){
 		const {id, title, body, author, date, voteScore, comments} = this.props.currentPost;
-		const { redirect } = this.state;
-		console.log("redirect", redirect);
-
+		const { redirect, errors } = this.state;
 		if(redirect){
 			return (redirect && (<Redirect to="/"/>))
 		}
@@ -104,7 +146,7 @@ class PostDetail extends Component {
 							<h3 className="comments-section-title">Comments</h3>
 						</div>
 						<div className="col-6">
-							<span className="right">add</span>
+							<span className="right"><button onClick={this.openCommentsModal}>add</button></span>
 						</div>
 					</div>
 					<div className="row">
@@ -112,8 +154,55 @@ class PostDetail extends Component {
 
 					</div>
 				</div>
-				<Modal isOpen={true} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
-
+				<Modal isOpen={this.state.newCommentModal} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
+					<div className="grid">
+						<div className="row">
+							<div className="col-12">
+								<button className="right" onClick={this.closeCommentsModal}>close</button>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-12">
+								<h2 className="centered">Add comment</h2>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-5">
+							</div>
+							<div className="col-7">
+							{ 
+								errors.map((error)=>(
+									<p>{error}</p>
+								))
+							}
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-5">
+								<span className="right">author:</span>
+							</div>
+							<div className="col-7">
+								<span><input type="text" value={this.state.commentAuthor} onChange={this.handleCommentAuthorChange}/></span>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-5">
+								<span className="right">body:</span>
+							</div>
+							<div className="col-7">
+								<span><textarea
+								rows="10" cols="30" type="text" value={this.state.commentBody} onChange={this.handleCommentBodyChange}/></span>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-5">
+								
+							</div>
+							<div className="col-7">
+								<button className="button" onClick={this.handleCommentSubmit}>add</button>
+							</div>
+						</div>
+					</div>
 				</Modal>
 			</div>
 
@@ -150,7 +239,12 @@ function mapDispatchToProps(dispatch){
 		deletePost: (id) =>(
 			api.deletePost(id).then((post)=>{
 			dispatch(actions.deletePost(post.id))
-		}))
+		})),
+		addComment: (id, body, author) => (
+			api.addComment(id, body, author).then((comment)=>{
+				dispatch(actions.addComment(comment))
+			})
+		)
 
 	}
 }

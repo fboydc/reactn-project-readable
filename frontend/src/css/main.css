@@ -9,3 +9,13 @@
 	text-align: center;
 	color: white;
 }
+
+.centered {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.button {
+	width: 100px;
+	height:50px;
+}
