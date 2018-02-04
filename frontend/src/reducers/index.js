@@ -11,6 +11,7 @@ import {
 	FEED_CATEGORIES,
 	FEED_COMMENTS,
 	ADD_COMMENT,
+	DELETE_COMMENT,
 	DELETE_POST,
 	SORT_BY_SCORE,
 	SORT_BY_TIMESTAMP
@@ -204,6 +205,13 @@ const currentPost = (state = { comments: []}, action) => {
 						...action.comment
 					}
 				]
+			}
+
+		case DELETE_COMMENT:
+
+			return {
+				...state,
+				comments: state.comments.filter((comment)=>(comment.id != action.id))
 			}
 
 		default:

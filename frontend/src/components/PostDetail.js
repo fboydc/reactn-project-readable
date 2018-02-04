@@ -70,7 +70,7 @@ class PostDetail extends Component {
 
 	handleCommentSubmit(){
 		const { commentAuthor, commentBody } = this.state;
-		const { id } = this.props.currentPost; 
+		const { id } = this.props.currentPost;
 
 		const errors = validate(commentAuthor, commentBody);
 
@@ -79,10 +79,12 @@ class PostDetail extends Component {
 			return;
 		}
 
-		this.props.addComment(id, commentAuthor, commentBody);
+		this.props.addComment(id, commentBody, commentAuthor);
 		this.closeCommentsModal();
 
-	}	
+	}
+
+
 
 
 
@@ -151,7 +153,6 @@ class PostDetail extends Component {
 					</div>
 					<div className="row">
 						<Comments />
-
 					</div>
 				</div>
 				<Modal isOpen={this.state.newCommentModal} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
@@ -170,7 +171,7 @@ class PostDetail extends Component {
 							<div className="col-5">
 							</div>
 							<div className="col-7">
-							{ 
+							{
 								errors.map((error)=>(
 									<p>{error}</p>
 								))
@@ -196,7 +197,7 @@ class PostDetail extends Component {
 						</div>
 						<div className="row">
 							<div className="col-5">
-								
+
 							</div>
 							<div className="col-7">
 								<button className="button" onClick={this.handleCommentSubmit}>add</button>

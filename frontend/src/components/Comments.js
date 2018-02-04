@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/framework.css';
 import { connect } from 'react-redux';
+import CommentLine from './CommentLine';
 
 
 
@@ -14,19 +15,7 @@ class Comments extends Component {
 			<div className="col-12">
 								{
 									comments.map((comment)=>(
-										<div className="grid" key={comment.id}>
-											<div className="row">
-												<div className="col-12">
-													<strong>{comment.author}:</strong>
-												</div>
-											</div>
-											<div className="row">
-												<div className="col-12 comment-body">
-													<em>{comment.body}</em>
-												</div>
-											</div>
-											<hr/>
-										</div>
+										<CommentLine comment={comment} key={comment.id} />
 
 									))
 								}
@@ -40,12 +29,13 @@ class Comments extends Component {
 }
 
 function mapStateToProps({ currentPost: { comments }}){
-	console.log("comments", comments)
 	return {
 		comments: comments
 	}
 
 }
+
+
 
 
 

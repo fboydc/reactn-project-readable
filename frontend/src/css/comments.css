@@ -17,3 +17,7 @@
 	background-color: #3A4F41;
 	color: #FFFFFF;
 }
+
+.comment-body p{
+	margin: 0;
+}
