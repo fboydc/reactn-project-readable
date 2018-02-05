@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/framework.css';
 import '../css/newpost.css';
-
 import PostForm from './PostForm';
 import { validate } from '../utils/validators';
 import  * as api from '../utils/api';
@@ -51,7 +50,6 @@ class NewPost extends Component {
 
 
 		const {category, title, author, body } = this.state;
-		console.log(this.state);
 
 		const errors = validate(category, title, author, body);
 
@@ -113,12 +111,17 @@ class NewPost extends Component {
  	}
 }
 
+
+
+
 function mapDispatchToProps(dispatch){
 	return {
 		newPost: (title, body, author, category)=>api.addPost(title, body, author, category)
-		.then((post) => {dispatch(actions.addPost(post))})
+		.then((post) => {dispatch(actions.addPost(post))} )
+
 	}
 
 }
+
 
 export default connect(null, mapDispatchToProps)(NewPost)
