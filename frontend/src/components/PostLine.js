@@ -31,7 +31,7 @@ class PostLine extends Component {
 			<div className="postlist-content">
 				<div className="postlist-header">
 					<big>
-						<b><Link to={`${category}/${id}`}>{title}</Link></b>
+						<b><Link to={`${category}/${id}`} className="post-title">{title}</Link></b>
 					</big>
 					<span className="right">
 						<Link to={`edit/${id}`}>edit</Link>|

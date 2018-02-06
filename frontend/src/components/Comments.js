@@ -13,12 +13,13 @@ class Comments extends Component {
 		if(comments.length > 0){
 			return(
 			<div className="col-12">
-								{
-									comments.map((comment)=>(
-										<CommentLine comment={comment} key={comment.id} />
 
-									))
-								}
+				{
+					comments.map((comment)=>(
+						<CommentLine comment={comment} key={comment.id} />
+
+					))
+				}
 			</div>
 		    );
 		}else{
@@ -29,8 +30,15 @@ class Comments extends Component {
 }
 
 function mapStateToProps({ currentPost: { comments }}){
+	const sorted = comments;
 	return {
-		comments: comments
+		 comments: sorted.sort((a, b)=>{
+		 	if(a.timestamp > b.timestamp)
+		 		return -1
+		 	if(a.timestamp < b.timestamp)
+		 		return 1;
+		 	return 0;
+		 })
 	}
 
 }

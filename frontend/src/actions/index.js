@@ -6,9 +6,13 @@ export const FEED_CATEGORIES = 'FEED_CATEGORIES';
 export const FEED_COMMENTS = 'FEED_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const LOAD_POST = 'LOAD_POST';
+export const LOAD_COMMENT = 'LOAD_COMMENT';
 export const DELETE_POST = 'DELETE_POST';
 export const SORT_BY_SCORE = 'SORT_BY_SCORE';
 export const SORT_BY_TIMESTAMP = 'SORT_BY_TIMESTAMP';
@@ -132,6 +136,35 @@ export const addComment = (comment)=> {
 export const deleteComment = (id)=> {
 	return {
 		type: DELETE_COMMENT,
+		id
+	}
+}
+
+export const loadComment = (comment)=> {
+	return {
+		type: LOAD_COMMENT,
+		comment
+	}
+}
+
+export const editComment = (comment)=>{
+	return {
+		type: EDIT_COMMENT,
+		comment
+	}
+}
+
+export const upvoteComment = (id)=> {
+	return {
+		type: UP_VOTE_COMMENT,
+		id
+	}
+}
+
+
+export const downvoteComment = (id)=> {
+	return {
+		type: DOWN_VOTE_COMMENT,
 		id
 	}
 }

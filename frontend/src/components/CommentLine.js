@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import * as api from  '../utils/api';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
+import EditComment from './EditComment';
+import CommentVoting from './CommentVoting';
+
 
 
 class CommentLine extends Component {
@@ -19,7 +22,7 @@ class CommentLine extends Component {
 
 
 
-	
+
 
 
 	deleteComment(){
@@ -51,7 +54,7 @@ class CommentLine extends Component {
 						<div className="grid">
 							<div className="row">
 								<div className="col-12">
-									<button type="button" className="right">edit</button>
+									<span className="right"><EditComment id={comment.id}/></span>
 									<button className="right" type="button" onClick={this.deleteComment}>delete</button>
 								</div>
 							</div>
@@ -64,6 +67,10 @@ class CommentLine extends Component {
 							<div className="row">
 								<div className="col-6">
 									<span>Score: {comment.voteScore}</span>
+									<CommentVoting id={comment.id}/>
+								</div>
+								<div className="col-6">
+
 								</div>
 							</div>
 						</div>
@@ -73,7 +80,7 @@ class CommentLine extends Component {
 				<hr/>
 
 			</div>
-			
+
 			)
 	}
 }

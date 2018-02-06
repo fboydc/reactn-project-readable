@@ -11,7 +11,11 @@ import {
 	FEED_CATEGORIES,
 	FEED_COMMENTS,
 	ADD_COMMENT,
+	LOAD_COMMENT,
+	EDIT_COMMENT,
 	DELETE_COMMENT,
+	UP_VOTE_COMMENT,
+	DOWN_VOTE_COMMENT,
 	DELETE_POST,
 	SORT_BY_SCORE,
 	SORT_BY_TIMESTAMP
@@ -214,17 +218,78 @@ const currentPost = (state = { comments: []}, action) => {
 				comments: state.comments.filter((comment)=>(comment.id != action.id))
 			}
 
+		case EDIT_COMMENT:
+
+			return {
+				...state,
+				comments: state.comments.map((comment)=>{
+					const { id, body } = action.comment;
+					if(comment.id === id){
+						return {
+							...comment,
+							body
+						}
+					}
+					return comment
+				})
+			}
+
+		case UP_VOTE_COMMENT:
+			return {
+				...state,
+				comments: state.comments.map((comment)=>{
+					if(comment.id === action.id){
+						const newScore = comment.voteScore + 1;
+						return{
+							...comment,
+							voteScore: newScore
+						}
+					}
+
+					return comment;
+
+				})
+			}
+
+		case DOWN_VOTE_COMMENT:
+			return {
+				...state,
+				comments: state.comments.map((comment)=>{
+					if(comment.id === action.id){
+						const newScore = comment.voteScore - 1;
+						return{
+							...comment,
+							voteScore: newScore
+						}
+					}
+
+					return comment;
+
+				})
+			}
 		default:
 			return state
 	}
 }
 
 
+const currentComment = (state = {}, action)=> {
+	switch(action.type){
+		case LOAD_COMMENT:
+			return {
+				...action.comment
+			}
+		default:
+			return state;
+	}
+}
+
 
 
 export default combineReducers({
 	posts,
 	categories,
-	currentPost
+	currentPost,
+	currentComment
 })
 

@@ -8,10 +8,10 @@ import  '../css/postdetail.css';
 import  '../css/comments.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import Modal from 'react-modal';
 import Comments from './Comments';
 import VotingOptions from './VotingOptions';
-import CommentFormModal from './CommentFormModal';
+import NewComment from './NewComment';
+import Modal from 'react-modal';
 
 
 
@@ -85,12 +85,12 @@ class PostDetail extends Component {
 						<div className="row">
 							<div className="col-12">
 								<p>Post not available</p>
-							</div>	
+							</div>
 						</div>
 					</div>
 
 				)
-			
+
 		}
 
 
@@ -141,17 +141,16 @@ class PostDetail extends Component {
 				<div className="comments-grid">
 					<div className="row">
 						<div className="col-6">
-							<h3 className="comments-section-title">Comments</h3>
+							<h3 className="comments-section-title">Comments: {comments.length}</h3>
 						</div>
 						<div className="col-6">
-							<span className="right"><button onClick={this.openCommentsModal}>add</button></span>
+							<span className="right"><NewComment /></span>
 						</div>
 					</div>
 					<div className="row">
 						<Comments />
 					</div>
 				</div>
-				<CommentFormModal id={id}  data={this.state} handlers={this.handlers}/>
 			</div>
 
 
