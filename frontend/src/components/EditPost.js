@@ -89,22 +89,21 @@ class EditPost extends Component {
  		const { category, id } = this.props.currentPost;
 
  		return(
- 			<div className="grid">
+ 			<div className="grid main-container">
  				<div className="row">
  					<header className="col-12 header">
  						<h1>Edit Post</h1>
  					</header>
  				</div>
  				<div className="row">
- 					<div className="col-12 back-link">
- 						<Link to="/">Go back</Link>
+ 					<div className="col-3">
  					</div>
- 				</div>
- 				<div className="row">
- 					<PostForm data={this.state} handlers={this.handlers} edit={true}/>
- 					{redirect && (
- 						<Redirect to={`/${category}/${id}`}/>
- 					)}
+ 					<div className="col-6">
+	 					<PostForm data={this.state} handlers={this.handlers} edit={true}/>
+	 					{redirect && (
+	 						<Redirect to={`/${category}/${id}`}/>
+	 					)}
+ 					</div>
  				</div>
  			</div>
 		);

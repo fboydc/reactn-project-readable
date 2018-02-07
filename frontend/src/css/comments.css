@@ -3,7 +3,7 @@
 	padding: 20px;
 	width: 90%;
 	margin: 0 auto;
-	background-color: #DEC3BE;
+	background-color: #978897;
 }
 
 .comments-section-title{
@@ -14,8 +14,8 @@
 .comment-body {
 	border-radius: 3px;
 	padding: 15px;
-	background-color: #3A4F41;
-	color: #FFFFFF;
+	background-color: #494850;
+	color: #D8D8F6;
 }
 
 .comment-body p{

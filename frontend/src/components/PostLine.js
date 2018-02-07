@@ -5,6 +5,7 @@ import * as api from '../utils/api';
 import { connect } from 'react-redux';
 import * as actions from '../actions/';
 import VotingOptions from './VotingOptions';
+import FontAwesome from 'react-fontawesome';
 
 class PostLine extends Component {
 
@@ -28,31 +29,39 @@ class PostLine extends Component {
 	render(){
 		const { id, title, body, author, voteScore, commentCount, date, category } = this.props.post;
 		return (
-			<div className="postlist-content">
-				<div className="postlist-header">
-					<big>
-						<b><Link to={`${category}/${id}`} className="post-title">{title}</Link></b>
-					</big>
-					<span className="right">
-						<Link to={`edit/${id}`}>edit</Link>|
-						<a href="" onClick={this.deletePost}>delete</a>
-					</span>
-
+			<div className="grid postlist-content">
+				<div className="row postlist-header">
+					<div className="col-6">
+						<big><b><Link to={`${category}/${id}`} className="post-title">{title}</Link></b></big>
+					</div>
+					<div className="col-6">
+						<span className="right">
+							<Link to={`edit/${id}`}><FontAwesome name="edit" className="editbutton"/></Link>
+							<button type="button" onClick={this.deletePost} className="deletebutton"><FontAwesome name="trash-alt"/></button>
+						</span>
+					</div>
 				</div>
-				<div className="postlist-footer">
-					<div className="postlist-footer-row">
-						<span>&nbsp;</span>
+				<div className="row">
+					<div className="col-12">
 						<span className="right">
 							<VotingOptions id={id}/>
 						</span>
 					</div>
-					<div className="postlist-footer-row">
+				</div>
+				<div className="row">
+					<div className="col-6">
 						<span>By: {author}</span>
-						<span className="postlist-footer-row-column2"> Score: {voteScore}</span>
 					</div>
-					<div className="postlist-footer-row">
+					<div className="col-6">
+						<span className="right"> Score: {voteScore}</span>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-6">
 						<span>Comments: {commentCount}</span>
-						<span className="postlist-footer-row-column2"> Created: {date}</span>
+					</div>
+					<div className="col-6">
+						<span className="right"> Created: {date}</span>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,14 @@
+.close-button {
+	padding: 10px 15px;
+	border-radius: 10px;
+	font-size: 12px;
+	background-color: #2C2C34;
+	color: #FFF;
+}
+
+.close-button:hover{
+	background-color: #FFF;
+	color: #2C2C34;
+	cursor: pointer;
+};
+

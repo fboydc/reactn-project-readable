@@ -1,16 +1,18 @@
 body {
   font-family: 'Ubuntu', sans-serif;
+  background-color: #FFF;
 }
 
+.left {
+	float: left;
+	margin-left: 0;
+}
 
-.link {
-	border: 1px solid black;
-	border-radius: 5px;
-	padding: 15px;
-	background-color: green;
-	text-decoration: none;
-	text-align: center;
-	color: white;
+.main-container {
+	background-color: #F5F5F5;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
 }
 
 .centered {
@@ -18,7 +20,89 @@ body {
 	margin: 0 auto;
 }
 
-.button {
-	width: 100px;
-	height:50px;
+
+
+.button:hover {
+	cursor: pointer;
+	background-color: #D8D8F6;
+	color: #2C2C34;
+	border: 1px solid #B18FCF;
 }
+
+.selectbox {
+	width: 120px;
+	height: 50px;
+	background-color: #2C2C34;
+	color: #FFF;
+	border-radius: 12px;
+	font-size: 16px;
+
+}
+
+
+
+.large-button {
+	background-color: #2C2C34;
+	padding: 15px 32px;
+	border-radius: 12px;
+	text-decoration: none;
+	border: 1px solid #D8D8F6;
+	text-align: center;
+	font-size: 16px;
+	color: #FFF;
+
+}
+
+.large-button:hover {
+	cursor: pointer;
+	background-color: #FFF;
+	color: #2C2C34;
+	border: 1px solid #D8D8F6;
+}
+
+.editbutton {
+	color: #B18FCF;
+	text-align: center;
+	font-size: 20px;
+
+}
+
+.editbutton:hover {
+	color: #2C2C34;
+	cursor: pointer;
+}
+
+.deletebutton {
+	margin-left: 20px;
+	background-color: #DC143C;
+	border-radius: 8px;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	color: #000;
+}
+
+.deletebutton:hover {
+	background-color: #000;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.categorylink {
+	padding: 20px;
+	width: 100%;
+	display: inline-block;
+	text-decoration: none;
+	background-color: #494850;
+	color: #D8D8F6;
+}
+
+.categorylink:hover {
+	background-color: #D8D8F6;
+	color: #494850;
+}
+
+
+
+
+

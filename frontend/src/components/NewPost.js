@@ -89,22 +89,23 @@ class NewPost extends Component {
  		const { redirect } = this.state;
 
  		return(
- 			<div className="grid">
+ 			<div className="grid main-container">
  				<div className="row">
  					<header className="col-12 header">
- 						<h1>Add New Post</h1>
+ 						<h1>My New Post</h1>
  					</header>
  				</div>
  				<div className="row">
- 					<div className="col-12 back-link">
- 						<Link to="/">Go back</Link>
+ 					<div className="col-3">
  					</div>
- 				</div>
- 				<div className="row">
+ 					<div className="col-6">
  					<PostForm data={this.state} handlers={this.handlers}/>
  					{redirect && (
  						<Redirect to="/"/>
  					)}
+ 					</div>
+ 					<div className="col-3">
+ 					</div>
  				</div>
  			</div>
  			)

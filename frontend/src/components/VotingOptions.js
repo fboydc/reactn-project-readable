@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as api from '../utils/api';
 import * as actions from '../actions';
+import FontAwesome from 'react-fontawesome';
 
 
 
@@ -35,7 +36,7 @@ class VotingOptions extends Component {
 	render(){
 		return(
 			<div>
-				<a href="#" onClick={this.upVote}>up</a>|<a href="#" onClick={this.downVote}>down</a>
+				<button type="button" onClick={this.upVote} className="likebutton"><FontAwesome name="thumbs-up"/></button>|<button type="button" onClick={this.downVote} className="likebutton"><FontAwesome name="thumbs-down"/></button>
 			</div>
 			)
 	}

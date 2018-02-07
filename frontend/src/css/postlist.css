@@ -1,20 +1,18 @@
 #posts {
+	border: 1px solid #2C2C34;
 	border-radius: 5px;
 	width: 70%;
 	margin-top: 0;
-	background-color: #978897;
+	background-color: #D8D8F6;
 	margin-bottom: 30px;
 	padding: 20px;
 }
 
 
 .postlist-content {
-	width: 100%;
 	padding: 30px;
 	border-bottom: 1px solid rgb(0, 0, 0);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-	-webkit-background-clip: padding-box; /* for Safari */
-    background-clip: padding-box;
 }
 
 .postlist-content:last-child {
@@ -22,7 +20,6 @@
 }
 
 .postlist-header {
-	width: 100%;
 	margin-bottom: 50px;
 }
 
@@ -32,19 +29,6 @@
 	margin-right: 10px;
 }
 
-.postlist-footer {
-	width: 100%;
-}
-
-
-.postlist-footer-row {
-	width: 100%;
-
-}
-
-.postlist-footer-row-column2 {
-	float: right;
-}
 
 .post-title {
 	color: #2C2C34;
@@ -52,7 +36,21 @@
 }
 
 .post-title:hover{
-	color: #D8D8F6;
+	color: #B18FCF;
 	text-decoration: underline;
+}
+
+
+.likebutton {
+	padding: 5px 15px;
+	background-color: #2C2C34;
+	color: #FFF;
+	border-radius: 5px;
+}
+
+.likebutton:hover {
+	cursor: pointer;
+	background-color: #FFF;
+	color: #2C2C34;
 }
 

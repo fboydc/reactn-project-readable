@@ -7,7 +7,6 @@ import '../css/framework.css'
 import Posts from './Posts';
 import '../css/header.css';
 import '../css/main.css';
-import '../css/categoryview.css';
 
 class CategoryView extends Component {
 
@@ -17,17 +16,18 @@ class CategoryView extends Component {
 		const { match: { params }} = this.props;
 
 		return(
-		<div className="grid">
+		<div className="grid main-container">
 			<div className="row">
 	          <header className="col-12 header">
-	            <h1>Readable</h1>
+	            <h1>Check Out These Posts</h1>
 	          </header>
 	        </div>
 	        <div className="row">
 	        	<div className="col-3">
 	        	</div>
-	        	<div className="col-9 sort-control">
+	        	<div className="col-9">
 		        	<SortPosts />
+	        		<span><Link className="large-button" to="/newpost">add new</Link></span>
 	        	</div>
 	        </div>
 	        <div className="row">
@@ -37,7 +37,7 @@ class CategoryView extends Component {
 	          <div className="col-9">
 	          	  <Posts category={params.category}/>
 	          	  <div>
-	          	  	 <Link className="link" to="/newpost">add new</Link>
+
 	          	  </div>
 	          </div>
 	        </div>

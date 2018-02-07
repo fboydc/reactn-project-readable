@@ -12,7 +12,7 @@ class CategoryLine extends Component {
 
 		return(
 			<li>
-				<Link to={path}>{name}</Link>
+				<Link to={path} className="categorylink">{name}</Link>
 			</li>
 			)
 	}

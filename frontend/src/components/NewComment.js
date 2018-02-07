@@ -4,6 +4,8 @@ import * as api from '../utils/api';
 import * as actions from '../actions';
 import { validate } from '../utils/commentsvalidator';
 import { connect } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
+
 
 
 
@@ -63,17 +65,17 @@ class NewComment extends Component {
 		return(
 
 			<span>
-				<button type="button" onClick={this.openModal}>comment</button>
+				<button type="button" onClick={this.openModal} className="large-button">comment</button>
 				<Modal isOpen={this.state.open} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
 					<div className="grid">
 						<div className="row">
 							<div className="col-12">
-								<button className="right" onClick={this.closeModal}>close</button>
+								<button className="right close-button" onClick={this.closeModal}><FontAwesome name="times"/></button>
 							</div>
 						</div>
 						<div className="row">
 							<div className="col-12">
-								<h2 className="centered">Add comment</h2>
+								<h2 className="centered test">Add comment</h2>
 							</div>
 						</div>
 						<div className="row">
@@ -92,7 +94,7 @@ class NewComment extends Component {
 								<span className="right">author:</span>
 							</div>
 							<div className="col-7">
-								<span><input type="text" value={this.state.author} onChange={this.onAuthorChange}/></span>
+								<input type="text" value={this.state.author} onChange={this.onAuthorChange} />
 							</div>
 						</div>
 						<div className="row">
@@ -100,7 +102,7 @@ class NewComment extends Component {
 								<span className="right">body:</span>
 							</div>
 							<div className="col-7">
-								<span><textarea
+								<span><textarea className="comment-input"
 								rows="10" cols="30" type="text" value={this.state.Body} onChange={this.onBodyChange}/></span>
 							</div>
 						</div>
@@ -109,7 +111,7 @@ class NewComment extends Component {
 
 							</div>
 							<div className="col-7">
-								<button className="button" onClick={this.handleSubmit}>add</button>
+								<button className="button submit-modal" onClick={this.handleSubmit}>add</button>
 							</div>
 						</div>
 					</div>

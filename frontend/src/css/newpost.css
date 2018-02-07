@@ -1,32 +1,35 @@
 .input_form{
-	margin: auto;
-	width: 50%;
+	width: 100%;
 }
 
 
 .input_form label {
-	margin-left: 50%;
+	margin-right: 30px;
 }
 
 .input_form input {
 	margin-right: 50%;
+	border-radius: 3px;
 	height: 30px;
-	width: 100%;
+	width: 70%;
 }
 
 .input_form button {
-	float: right;
-	margin: auto;
-	width: 50%;
-	height: 30px;
+	width: 70%;
 }
 
 .input_form textarea {
-	width: 100%;
+	width: 70%;
 	resize: none;
+	border-radius: 3px;
 }
 
-select {
-	width: 100%;
+.post-selectbox {
+	width: 300px;
 	height: 30px;
+}
+
+.back-button {
+	margin-right: 20px;
+	float: right;
 }

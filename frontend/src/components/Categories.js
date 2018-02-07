@@ -22,7 +22,7 @@ class Categories extends Component {
 		const { categories } = this.props
 		return(
 			<ul className="category-list">
-				<li><Link to="/">all</Link></li>
+				<li><Link to="/" className="categorylink">all</Link></li>
 				{ categories.map((category) => {
 					return <CategoryLine key={category.name} category={category}/>
 				})}

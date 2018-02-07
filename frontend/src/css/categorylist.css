@@ -1,12 +1,10 @@
 .category-list {
+	padding-left: 0px;
 	border: 1px solid black;
 	list-style-type: none;
-	padding: 0px;
 	text-align: center;
 	margin-top: 0px;
 	margin-right: 30px;
-}
+	margin-left: 30px;
 
-.category-list li {
-	padding: 10px;
 }

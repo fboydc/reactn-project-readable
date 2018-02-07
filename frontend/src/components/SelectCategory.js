@@ -34,7 +34,7 @@ class SelectCategory extends Component {
 			)
 		}else{
 			return(
-				<select value={value} onChange={handler}>
+				<select value={value} onChange={handler} className="post-selectbox">
 					<option value=''>select category</option>
 					{categories.map((category) => (
 						<option value={category.path} key={category.path}>{category.name}</option>

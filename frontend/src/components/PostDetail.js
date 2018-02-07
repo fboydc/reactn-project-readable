@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 import  '../css/framework.css';
 import  '../css/postdetail.css';
 import  '../css/comments.css';
+import '../css/modal.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Comments from './Comments';
 import VotingOptions from './VotingOptions';
 import NewComment from './NewComment';
 import Modal from 'react-modal';
+import FontAwesome from 'react-fontawesome';
 
 
 
@@ -96,10 +98,10 @@ class PostDetail extends Component {
 
 		return(
 
-			<div className="postdetail-grid">
+			<div className="grid postdetail-container">
 				<div className="row">
 					<div className="col-12">
-						<Link to="/">Take me back</Link>
+						<Link to="/" className="large-button">Take me back</Link>
 					</div>
 				</div>
 				<div className="row">
@@ -128,8 +130,8 @@ class PostDetail extends Component {
 				<div>
 					<div className="row">
 						<div className="col-6">
-							<Link to={`../edit/${id}`}>edit</Link>|
-							<button onClick={this.deletePost}>delete</button>
+							<Link to={`../edit/${id}`}><FontAwesome name="edit" className="editbutton"/></Link>
+							<button onClick={this.deletePost} className="deletebutton"><FontAwesome name="trash-alt"/></button>
 						</div>
 					</div>
 				</div>

@@ -4,6 +4,7 @@ import * as api from '../utils/api';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import {validate} from '../utils/commentsvalidator';
+import FontAwesome from 'react-fontawesome';
 
 
 
@@ -70,12 +71,12 @@ class EditComment extends Component {
 		const {errors} = this.state;
 		return(
 			<span>
-				<button type="button" onClick={this.openModal}>edit</button>
+				<button type="button" onClick={this.openModal} className="editbutton"><FontAwesome name="edit"/></button>
 				<Modal isOpen={this.state.open} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
 					<div className="grid">
 						<div className="row">
 							<div className="col-12">
-								<button className="right" onClick={this.closeModal}>X</button>
+								<button className="right close-button" onClick={this.closeModal}><FontAwesome name="times"/></button>
 							</div>
 						</div>
 						<div className="row">
@@ -116,7 +117,7 @@ class EditComment extends Component {
 
 							</div>
 							<div className="col-7">
-								<button className="button" onClick={this.handleSubmit}>add</button>
+								<button className="button submit-modal" onClick={this.handleSubmit}>add</button>
 							</div>
 						</div>
 					</div>

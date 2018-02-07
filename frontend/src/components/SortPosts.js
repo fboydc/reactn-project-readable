@@ -50,16 +50,20 @@ class SortPosts extends Component {
 	render(){
 
 		return(
-			<div>
-				<label>
-			        Criteria:
-			    </label>
-				<select value={this.state.value} onChange={this.handleChange}>
-					<option value="timestamp">date</option>
-					<option value="voteScore">score</option>
-				</select>
-				<button onClick={this.handleSort}>sort</button>
-			</div>
+			<span className="sort-container">
+				<span>
+					<label className="sort-label">Criteria:</label>
+				</span>
+				<span className="sort-select">
+					<select value={this.state.value} onChange={this.handleChange} className="selectbox">
+						<option value="timestamp">date</option>
+						<option value="voteScore">score</option>
+					</select>
+				</span>
+				<span>
+					<button onClick={this.handleSort} className="large-button">sort</button>
+				</span>
+			</span>
 			)
 	}
 }

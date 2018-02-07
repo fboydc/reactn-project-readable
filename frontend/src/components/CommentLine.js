@@ -4,6 +4,7 @@ import * as actions from '../actions';
 import { connect } from 'react-redux';
 import EditComment from './EditComment';
 import CommentVoting from './CommentVoting';
+import FontAwesome from 'react-fontawesome';
 
 
 
@@ -55,7 +56,7 @@ class CommentLine extends Component {
 							<div className="row">
 								<div className="col-12">
 									<span className="right"><EditComment id={comment.id}/></span>
-									<button className="right" type="button" onClick={this.deleteComment}>delete</button>
+									<span className="right"><button type="button" onClick={this.deleteComment} className="deletebutton"><FontAwesome name="trash"/></button></span>
 								</div>
 							</div>
 

@@ -1,17 +1,12 @@
 
-.sort-control select {
-	width: 20%;
+.sort-container {
+	padding: 20px;
 }
 
-.sort-control div{
-	margin-left: 0;
+.sort-label {
+	margin-right: 20px;
 }
 
-.sort-control select {
-	margin-left: 10px;
-}
-.sort-control button {
-	margin-left: 10px;
-	width: 50px;
-	height: 30px;
+.sort-select {
+	margin-right: 20px;
 }
