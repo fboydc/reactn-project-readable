@@ -31,10 +31,10 @@ class PostLine extends Component {
 		return (
 			<div className="grid postlist-content">
 				<div className="row postlist-header">
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<big><b><Link to={`${category}/${id}`} className="post-title">{title}</Link></b></big>
 					</div>
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span className="right">
 							<Link to={`edit/${id}`}><FontAwesome name="edit" className="editbutton"/></Link>
 							<button type="button" onClick={this.deletePost} className="deletebutton"><FontAwesome name="trash-alt"/></button>
@@ -42,25 +42,25 @@ class PostLine extends Component {
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-12">
+					<div className="col-12 col-12-medium">
 						<span className="right">
 							<VotingOptions id={id}/>
 						</span>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span>By: {author}</span>
 					</div>
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span className="right"> Score: {voteScore}</span>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span>Comments: {commentCount}</span>
 					</div>
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span className="right"> Created: {date}</span>
 					</div>
 				</div>

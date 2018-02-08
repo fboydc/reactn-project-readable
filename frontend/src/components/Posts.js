@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import  * as api from '../utils/api';
 import * as actions from '../actions/';
 import { convertDate } from '../utils/dateconverter'
-import PostLine from './PostLine'
+import PostLine from './PostLine';
 
 class Posts extends Component {
 
@@ -52,7 +52,7 @@ class Posts extends Component {
     }
 		return (
 
-			<ul id="posts">
+			<ul className="posts">
 				{ posts.map((post)=>{
 					return <PostLine key={post.id} post={post} />
 				})}

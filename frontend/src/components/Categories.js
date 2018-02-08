@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
 import { connect } from 'react-redux';
-import '../css/categorylist.css'
 import CategoryLine from './CategoryLine';
 import * as actions from '../actions/';
 import { Link } from 'react-router-dom';

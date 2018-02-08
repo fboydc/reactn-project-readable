@@ -5,6 +5,16 @@ import PostDetail from './PostDetail';
 import NewPost from './NewPost';
 import EditPost from './EditPost';
 import { Route, Switch } from 'react-router-dom';
+import '../css/categorylist.css';
+import '../css/header.css';
+import '../css/main.css';
+import '../css/framework.css';
+import '../css/newpost.css';
+import  '../css/postdetail.css';
+import  '../css/comments.css';
+import '../css/modal.css';
+import '../css/sortposts.css';
+import '../css/mobile.css';
 
 
 

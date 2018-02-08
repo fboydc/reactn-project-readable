@@ -44,7 +44,8 @@ class NewComment extends Component {
 		this.setState({body: e.target.value});
 	}
 
-	handleSubmit(){
+	handleSubmit(e){
+		e.preventDefault();
 		const { author, body } = this.state;
 		const { id, addComment } = this.props;
 
@@ -53,10 +54,12 @@ class NewComment extends Component {
 		if(errors.length > 0){
 			this.setState({errors})
 			return;
+		}else{
+			addComment(id, body, author);
+			this.closeModal();
 		}
 
-		addComment(id, body, author);
-		this.closeModal();
+
 
 	}
 
@@ -67,7 +70,8 @@ class NewComment extends Component {
 			<span>
 				<button type="button" onClick={this.openModal} className="large-button">comment</button>
 				<Modal isOpen={this.state.open} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
-					<div className="grid">
+
+					<form className="grid" onSubmit={this.handleSubmit}>
 						<div className="row">
 							<div className="col-12">
 								<button className="right close-button" onClick={this.closeModal}><FontAwesome name="times"/></button>
@@ -111,10 +115,10 @@ class NewComment extends Component {
 
 							</div>
 							<div className="col-7">
-								<button className="button submit-modal" onClick={this.handleSubmit}>add</button>
+								<button className="button submit-modal">add</button>
 							</div>
 						</div>
-					</div>
+					</form>
 				</Modal>
 			  </span>);
 	}

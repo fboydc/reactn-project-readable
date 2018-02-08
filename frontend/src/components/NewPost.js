@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/framework.css';
-import '../css/newpost.css';
 import PostForm from './PostForm';
 import { validate } from '../utils/validators';
 import  * as api from '../utils/api';

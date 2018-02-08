@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as api from '../utils/api';
 import { connect } from 'react-redux';
 import * as actions from '../actions/';
-import '../css/newpost.css';
 
 class SelectCategory extends Component {
 

@@ -1,7 +1,7 @@
-#posts {
+
+.posts {
 	border: 1px solid #2C2C34;
 	border-radius: 5px;
-	width: 70%;
 	margin-top: 0;
 	background-color: #D8D8F6;
 	margin-bottom: 30px;
@@ -52,5 +52,18 @@
 	cursor: pointer;
 	background-color: #FFF;
 	color: #2C2C34;
+}
+
+
+@media screen and (min-width: 900px){
+	.posts {
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 899px){
+	.posts {
+		width: 100%;
+	}
 }
 

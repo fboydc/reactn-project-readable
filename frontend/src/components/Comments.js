@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/framework.css';
 import { connect } from 'react-redux';
 import CommentLine from './CommentLine';
 

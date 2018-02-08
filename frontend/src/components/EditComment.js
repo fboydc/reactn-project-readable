@@ -49,7 +49,8 @@ class EditComment extends Component {
 	}
 
 
-	handleSubmit(){
+	handleSubmit(e){
+		e.preventDefault();
 		const {id} = this.props.currentComment;
 		const {author,body} = this.state;
 
@@ -73,7 +74,7 @@ class EditComment extends Component {
 			<span>
 				<button type="button" onClick={this.openModal} className="editbutton"><FontAwesome name="edit"/></button>
 				<Modal isOpen={this.state.open} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
-					<div className="grid">
+					<form className="grid" onSubmit={this.handleSubmit}>
 						<div className="row">
 							<div className="col-12">
 								<button className="right close-button" onClick={this.closeModal}><FontAwesome name="times"/></button>
@@ -117,10 +118,10 @@ class EditComment extends Component {
 
 							</div>
 							<div className="col-7">
-								<button className="button submit-modal" onClick={this.handleSubmit}>add</button>
+								<button className="button submit-modal">add</button>
 							</div>
 						</div>
-					</div>
+					</form>
 				</Modal>
 			</span>
 		);

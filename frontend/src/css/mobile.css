@@ -1,0 +1,51 @@
+.mobile-menu {
+	width: 100%;
+	background-color: #2C2C34;
+	border-radius: 5px;
+	padding: 0;
+	color: #FFF;
+}
+
+.mobile-menu-grid {
+	 width: 100%;
+	 margin: 0 auto;
+}
+
+.mobile-menu-row {
+	width: 100%;
+	display: flex;
+}
+
+.center {
+	margin: auto;
+}
+
+
+
+
+.mobile-menu ul {
+	list-style-type: none;
+}
+
+
+.hamburger-icon {
+	font-size: 50px;
+	float: right;
+	background-color: #2C2C34;
+	border: none;
+	color: #FFF;
+	padding: 10px;
+}
+
+.hamburger-icon:hover {
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.responsive {
+	display: block;
+}
+
