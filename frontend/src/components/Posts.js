@@ -40,7 +40,7 @@ class Posts extends Component {
 	render(){
 
 		const { posts } = this.props;
-
+    console.log(this.props);
     if(posts.length === 0){
       return (
               <div>
@@ -54,7 +54,7 @@ class Posts extends Component {
 
 			<ul className="posts">
 				{ posts.map((post)=>{
-					return <PostLine key={post.id} post={post} />
+					return <PostLine key={post.id} post={post} isSmall={this.props.isSmall}/>
 				})}
 			</ul>
 		)

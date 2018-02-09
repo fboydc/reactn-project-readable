@@ -34,22 +34,25 @@ class CategoryView extends Component {
 		const { match: { params }} = this.props;
 		const { width } = this.state;
 		const isMedium = (width <= 899);
+		const isSmall = (width <= 600);
+
+
 
 		if(isMedium){
 
 			return(
-				<div className="grid main-container">
+				<div className="grid main-container mobile-grid">
 					<div className="row">
 			          <header className="col-12 header">
 			            <h1>Check Out These Posts</h1>
 			          </header>
 			        </div>
 			        <div className="row">
-			        	<MobileMenu />
+			        	<MobileMenu isMedium={isMedium}/>
 			        </div>
 			        <div className="row">
 			          <div className="col-12-medium">
-			          	  <Posts className="posts" category={params.category}/>
+			          	  <Posts className="posts" category={params.category} isSmall={isSmall}/>
 			          </div>
 			        </div>
 		      	</div>
@@ -76,9 +79,6 @@ class CategoryView extends Component {
 			          </div>
 			          <div className="col-9">
 			          	  <Posts category={params.category}/>
-			          	  <div>
-
-			          	  </div>
 			          </div>
 			        </div>
 		      	</div>

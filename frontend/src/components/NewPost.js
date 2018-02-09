@@ -19,7 +19,8 @@ class NewPost extends Component {
 			author: '',
 			category: '',
 			title: '',
-			body: ''
+			body: '',
+			width: window.innerWidth
 		}
 
 		this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -27,6 +28,7 @@ class NewPost extends Component {
 		this.handleBodyChange = this.handleBodyChange.bind(this);
 		this.handleCategoryChange = this.handleCategoryChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 
 
 		this.handlers = {
@@ -41,6 +43,17 @@ class NewPost extends Component {
 
 	}
 
+	componentWillMount() {
+		window.addEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange(){
+		this.setState({width: window.innerWidth});
+	}
 
 
 	handleSubmit(e){
@@ -86,7 +99,30 @@ class NewPost extends Component {
  		const { errors } = this.state;
  		const { redirect } = this.state;
 
- 		return(
+ 		const { width } = this.state;
+		const isMedium = (width <= 899);
+
+		if(isMedium){
+			return(
+				<div className="grid main-container">
+ 				<div className="row">
+ 					<header className="col-12 header">
+ 						<h1>My New Post</h1>
+ 					</header>
+ 				</div>
+ 				<div className="row">
+ 					<div className="col-12">
+	 					<PostForm data={this.state} handlers={this.handlers} isMedium={isMedium}/>
+	 					{redirect && (
+	 						<Redirect to="/"/>
+	 					)}
+ 					</div>
+ 				</div>
+ 			</div>
+			)
+		}
+		else {
+			return(
  			<div className="grid main-container">
  				<div className="row">
  					<header className="col-12 header">
@@ -102,11 +138,11 @@ class NewPost extends Component {
  						<Redirect to="/"/>
  					)}
  					</div>
- 					<div className="col-3">
- 					</div>
  				</div>
  			</div>
  			)
+		}
+
  	}
 }
 

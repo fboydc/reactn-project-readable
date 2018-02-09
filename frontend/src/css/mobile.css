@@ -1,3 +1,7 @@
+.mobile-grid {
+	padding: 15px;
+}
+
 .mobile-menu {
 	width: 100%;
 	background-color: #2C2C34;
@@ -31,7 +35,7 @@
 	padding: 15px 32px;
 	text-align: center;
 	color: #FFF;
-	font-size: 40px;
+	font-size: 30px;
 	text-decoration: none;
 }
 
@@ -68,7 +72,64 @@
 	display: block;
 }
 
-.center {
-	margin: auto;
+.menuitems {
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-right: 10px;
 }
+
+.menuitems button {
+	border-radius: 5px;
+	height: 40px;
+	width: 50px;
+	margin-right: 10px;
+	font-size: 30px;
+}
+
+
+.menuitems button:hover {
+	cursor: pointer;
+}
+
+
+.newpost-link {
+	color: #2C2C34;
+	padding: 3px 10px;
+	background-color: #FFF;
+	border-radius: 5px;
+	font-size: 30px;
+}
+
+.postlist-content-mobile {
+	font-size: 25px;
+	margin-top: 50px;
+	border-bottom: 1px solid black;
+}
+
+.postlist-content-mobile:last-child {
+	border-bottom: none;
+}
+
+
+.mobile-editbutton {
+	text-decoration: none;
+	font-size: 50px;
+}
+
+.mobile-likebutton {
+	border-radius: 5px;
+	font-size: 50px;
+}
+
+
+.mobile-likebutton:hover {
+	cursor: pointer;
+}
+.mobile-deletebutton{
+	margin-left: 20px;
+	font-size: 50px;
+	border-radius: 5px;
+	background-color: #DC143C;
+}
+
 

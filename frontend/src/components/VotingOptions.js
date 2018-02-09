@@ -34,11 +34,21 @@ class VotingOptions extends Component {
 
 
 	render(){
-		return(
+		console.log("props in voting", this.props);
+		if(this.props.isSmall){
+			return(
+			<div>
+				<button type="button" onClick={this.upVote} className="mobile-likebutton"><FontAwesome name="thumbs-up"/></button>|<button type="button" onClick={this.downVote} className="mobile-likebutton"><FontAwesome name="thumbs-down"/></button>
+			</div>
+			)
+		}else{
+			return(
 			<div>
 				<button type="button" onClick={this.upVote} className="likebutton"><FontAwesome name="thumbs-up"/></button>|<button type="button" onClick={this.downVote} className="likebutton"><FontAwesome name="thumbs-down"/></button>
 			</div>
 			)
+		}
+
 	}
 }
 

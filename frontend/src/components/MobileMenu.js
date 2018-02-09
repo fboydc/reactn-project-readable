@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import FontAwesome from 'react-fontawesome';
 import SortPosts from './SortPosts';
+import MobileSort from './MobileSort';
+import MobileNewPost from './MobileNewPost';
+import MobileCategories from './MobileCategories';
 import { Link } from 'react-router-dom';
 
 
@@ -17,12 +20,8 @@ class MobileMenu extends Component {
 		console.log(className);
 		if(className === "row hidden"){
 			this.menuContainer.className = "row responsive";
-			this.sortsRow.className = "row responsive";
-			this.newPost.className = "row responsive";
 		}else{
 			this.menuContainer.className = "row hidden";
-			this.sortsRow.className = "row";
-			this.newPost.className = "row";
 		}
 	}
 
@@ -33,26 +32,17 @@ class MobileMenu extends Component {
 		return(
 			<div className="grid mobile-menu" ref={(input)=>{this.mobileMenu = input;}}>
 				<div className="row">
-					<div className="col-12-medium">
+					<ul className="col-9-medium">
+						<li className="menuitems"><MobileSort /><MobileNewPost /></li>
+					</ul>
+					<div className="col-3-medium">
 						<button className="hamburger-icon" onClick={this.toggleMenu}><FontAwesome name="bars"/>
 						</button>
 					</div>
 				</div>
 				<div className="row hidden" ref={(input)=>{this.menuContainer = input;}}>
-					<div className="col-12-medium">
-						<div className="row" ref={(input)=>{this.sortsRow = input}}>
-							<ul className="col-12-medium">
-								<li className="menuitems"><SortPosts /></li>
-							</ul>
-						</div>
-						<div className="row" ref={(input)=>{this.newPost = input}}>
-							<div className="col-12-medium">
-								<Link className="mobile-menu-link" to="/newpost">add new</Link>
-							</div>
-						</div>
-					</div>
+					<MobileCategories toggleMenu={this.toggleMenu}/>
 				</div>
-
 			</div>
 		);
 	}

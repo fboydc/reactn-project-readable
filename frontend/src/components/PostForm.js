@@ -10,9 +10,10 @@ class PostForm extends Component {
 		const { handleCategory, handleTitle, handleAuthor, handleBody, handleSubmit} = this.props.handlers;
 
 			if(!this.props.edit){
+
 					return(
 
-				<form className="grid input_form" onSubmit={handleSubmit}>
+					<form className="grid input_form" onSubmit={handleSubmit}>
 	 						{errors.map(error=>(
 	 							<p key={error}>Error: {error}</p>
 	 							))}
@@ -76,70 +77,75 @@ class PostForm extends Component {
 	 			</form>
 			);
 		}else{
-			return(
-				<form className="grid input_form" onSubmit={handleSubmit}>
-	 						{errors.map(error=>(
-	 							<p key={error}>Error: {error}</p>
-	 							))}
-	 						<div className="row">
-	 							<div className="col-3">
-	 								<Link to="/" className="large-button back-button">Go back</Link>
-	 							</div>
-	 							<div className="col-9">
-	 							</div>
-	 						</div>
-	 						<div className="row">
-	 							<div className="col-3">
-	 								<label className="title">Category:</label>
-	 							</div>
-	 							<div className="col-9">
-	 								<SelectCategory handler={handleCategory} value={category}/>
-	 							</div>
-	 						</div>
-	 						<div className="row">
-	 							<div className="col-3">
-	 								<label className="title">Title:</label>
-	 							</div>
-	 							<div className="col-9">
-	 								<input
-	 									id="title"
-	 									value={title}
-	 									onChange={handleTitle}
-	 									name="title" type="text" />
-	 							</div>
-	 						</div>
-	 						<div className="row">
-	 							<div className="col-3">
-	 								<label className="author">Author:</label>
-	 							</div>
-	 							<div className="col-9">
-	 								<input id="author"
-	 									   value={author}
-	 									   onChange={handleAuthor}
-	 									   type="text"></input>
-	 							</div>
-	 						</div>
-	 						<div className="row">
-	 							<div className="col-3">
-	 								<label className="body">Body:</label>
-	 							</div>
-	 							<div className="col-9">
-	 								<textarea id="body"
-	 										  value={body}
-	 										  onChange={handleBody}
-	 										  rows="10" cols="30"/>
-	 							</div>
-	 						</div>
-	 						<div className="row">
-	 							<div className="col-3">
+			console.log("is isMedium in props", this.props);
+			if(this.props.isMedium){
 
-	 							</div>
-	 							<div className="col-9">
-	 								<button className="large-button">Submit</button>
-	 							</div>
-	 						</div>
-	 			</form>
-			);
+			}else{
+				return(
+					<form className="grid input_form" onSubmit={handleSubmit}>
+		 						{errors.map(error=>(
+		 							<p key={error}>Error: {error}</p>
+		 							))}
+		 						<div className="row">
+		 							<div className="col-3">
+		 								<Link to="/" className="large-button back-button">Go back</Link>
+		 							</div>
+		 							<div className="col-9">
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-3">
+		 								<label className="title">Category:</label>
+		 							</div>
+		 							<div className="col-9">
+		 								<SelectCategory handler={handleCategory} value={category}/>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-3">
+		 								<label className="title">Title:</label>
+		 							</div>
+		 							<div className="col-9">
+		 								<input
+		 									id="title"
+		 									value={title}
+		 									onChange={handleTitle}
+		 									name="title" type="text" />
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-3">
+		 								<label className="author">Author:</label>
+		 							</div>
+		 							<div className="col-9">
+		 								<input id="author"
+		 									   value={author}
+		 									   onChange={handleAuthor}
+		 									   type="text"></input>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-3">
+		 								<label className="body">Body:</label>
+		 							</div>
+		 							<div className="col-9">
+		 								<textarea id="body"
+		 										  value={body}
+		 										  onChange={handleBody}
+		 										  rows="10" cols="30"/>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-3">
+
+		 							</div>
+		 							<div className="col-9">
+		 								<button className="large-button">Submit</button>
+		 							</div>
+		 						</div>
+		 			</form>
+				);
+			}
 		}
 
 	}

@@ -28,6 +28,53 @@ class PostLine extends Component {
 
 	render(){
 		const { id, title, body, author, voteScore, commentCount, date, category } = this.props.post;
+		const { isSmall } = this.props;
+
+		if(isSmall){
+			return (
+			<div className="grid postlist-content-mobile">
+				<div className="row">
+					<div className="col-12-medium">
+						<big><b><Link to={`${category}/${id}`} className="post-title">{title}</Link></b></big>
+					</div>
+
+				</div>
+				<div className="row">
+					<div className="col-12-medium">
+						<span>By: {author}</span>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12-medium">
+						<Link to={`edit/${id}`}><FontAwesome name="edit" className="mobile-editbutton"/></Link>
+						<button type="button" onClick={this.deletePost} className="mobile-deletebutton"><FontAwesome name="trash-alt"/></button>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12-medium">
+						<span>
+							<VotingOptions id={id} isSmall={isSmall}/>
+						</span>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12-medium">
+						<span> Score: {voteScore}</span>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12-medium">
+						<span>Comments: {commentCount}</span>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12-medium">
+						<span className="right"> {date}</span>
+					</div>
+				</div>
+			</div>
+			)
+		}else{
 		return (
 			<div className="grid postlist-content">
 				<div className="row postlist-header">
@@ -66,6 +113,7 @@ class PostLine extends Component {
 				</div>
 			</div>
 			)
+		}
 	}
 }
 
