@@ -15,11 +15,14 @@ class MobileMenu extends Component {
 	toggleMenu(){
 		const {className} = this.menuContainer;
 		console.log(className);
-		if(className === "mobile-menu-row hidden"){
-			console.log("here");
-			this.menuContainer.className = "mobile-menu-row responsive";
+		if(className === "row hidden"){
+			this.menuContainer.className = "row responsive";
+			this.sortsRow.className = "row responsive";
+			this.newPost.className = "row responsive";
 		}else{
-			this.menuContainer.className = "mobile-menu-row hidden";
+			this.menuContainer.className = "row hidden";
+			this.sortsRow.className = "row";
+			this.newPost.className = "row";
 		}
 	}
 
@@ -28,23 +31,23 @@ class MobileMenu extends Component {
 
 	render(){
 		return(
-			<div className="mobile-menu-grid mobile-menu" ref={(input)=>{this.mobileMenu = input;}}>
-				<div className="mobile-menu-row">
+			<div className="grid mobile-menu" ref={(input)=>{this.mobileMenu = input;}}>
+				<div className="row">
 					<div className="col-12-medium">
 						<button className="hamburger-icon" onClick={this.toggleMenu}><FontAwesome name="bars"/>
 						</button>
 					</div>
 				</div>
-				<div className="mobile-menu-row hidden" ref={(input)=>{this.menuContainer = input;}}>
-					<div className="col-12-medium mobile-menugrid">
-						<div className="mobile-menu-row">
+				<div className="row hidden" ref={(input)=>{this.menuContainer = input;}}>
+					<div className="col-12-medium">
+						<div className="row" ref={(input)=>{this.sortsRow = input}}>
 							<ul className="col-12-medium">
 								<li className="menuitems"><SortPosts /></li>
 							</ul>
 						</div>
-						<div className="mobile-menu-row">
+						<div className="row" ref={(input)=>{this.newPost = input}}>
 							<div className="col-12-medium">
-								<span className="center"><Link className="large-button" to="/newpost">add new</Link></span>
+								<Link className="mobile-menu-link" to="/newpost">add new</Link>
 							</div>
 						</div>
 					</div>
