@@ -16,7 +16,8 @@ class EditComment extends Component {
 			author: '',
 			body: '',
 			open: false,
-			errors: []
+			errors: [],
+			width: window.innerWidth
 
 		}
 
@@ -24,6 +25,7 @@ class EditComment extends Component {
 		this.closeModal = this.closeModal.bind(this);
 		this.onBodyChange = this.onBodyChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 	}
 
 	openModal(){
@@ -66,11 +68,81 @@ class EditComment extends Component {
 	}
 
 
+	componentWillMount() {
+		window.addEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange(){
+		this.setState({width: window.innerWidth});
+	}
+
+
+
 
 	render(){
 
 		const {errors} = this.state;
-		return(
+		const { width } = this.state;
+		const isMedium = (width <= 899);
+
+		if(isMedium){
+			return (<span>
+				<button type="button" onClick={this.openModal} className="editbutton"><FontAwesome name="edit"/></button>
+				<Modal isOpen={this.state.open} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
+						<form className="grid" onSubmit={this.handleSubmit}>
+							<div className="row">
+								<div className="col-12">
+									<button className="right close-button" onClick={this.closeModal}><FontAwesome name="times"/></button>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-12">
+									<h2 className="centered test">Add comment</h2>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-12">
+								{
+									errors.map((error)=>(
+										<p>{error}</p>
+									))
+								}
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-2-medium">
+									<span className="right">author:</span>
+								</div>
+								<div className="col-10-medium">
+									<input type="text" value={this.state.author} onChange={this.onAuthorChange} />
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-2-medium">
+									<span className="right">body:</span>
+								</div>
+								<div className="col-10-medium">
+									<span><textarea className="comment-input"
+									type="text" value={this.state.body} onChange={this.onBodyChange}/></span>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-2-medium">
+
+								</div>
+								<div className="col-10-medium">
+									<button className="button submit-modal">add</button>
+								</div>
+							</div>
+						</form>
+					</Modal>
+			</span>)
+		}else{
+			return(
 			<span>
 				<button type="button" onClick={this.openModal} className="editbutton"><FontAwesome name="edit"/></button>
 				<Modal isOpen={this.state.open} className="postdetail-newcomment-modal" overlayClassName="postdetail-newcomment-overlay">
@@ -125,6 +197,8 @@ class EditComment extends Component {
 				</Modal>
 			</span>
 		);
+		}
+		
 	}
 }
 

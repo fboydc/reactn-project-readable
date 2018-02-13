@@ -28,7 +28,7 @@ class CommentVoting extends Component {
 
 	render(){
 		return (
-			<span>
+			<span className="comment-likes">
 				<button type="button" onClick={this.upVote} className="likebutton"><FontAwesome name="thumbs-up"/></button>
 				<button type="button" onClick={this.downVote} className="likebutton"><FontAwesome name="thumbs-down"/></button>
 			</span>

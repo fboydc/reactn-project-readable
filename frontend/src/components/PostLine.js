@@ -53,7 +53,7 @@ class PostLine extends Component {
 				<div className="row">
 					<div className="col-12-medium">
 						<span>
-							<VotingOptions id={id} isSmall={isSmall}/>
+							<VotingOptions id={id} />
 						</span>
 					</div>
 				</div>

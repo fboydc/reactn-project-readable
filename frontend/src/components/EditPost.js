@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as api from '../utils/api'
 import * as actions from '../actions/';
 import { Link } from 'react-router-dom';
-import PostForm from './PostForm';
+import SelectCategory from './SelectCategory';
 import { Redirect } from 'react-router-dom';
 
 
@@ -20,7 +20,8 @@ class EditPost extends Component {
 			author: '',
 			category: '',
 			title: '',
-			body: ''
+			body: '',
+			width: window.innerWidth
 		}
 
 		this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -28,21 +29,14 @@ class EditPost extends Component {
 		this.handleBodyChange = this.handleBodyChange.bind(this);
 		this.handleCategoryChange = this.handleCategoryChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-
-		this.handlers = {
-			handleTitle: this.handleTitleChange,
-			handleAuthor: this.handleAuthorChange,
-			handleBody: this.handleBodyChange,
-			handleCategory: this.handleCategoryChange,
-			handleSubmit: this.handleSubmit
-
-		}
+		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 
 	}
 
 
 
 	componentWillMount(){
+		window.addEventListener('resize', this.handleWindowSizeChange);
 		const { match: { params }} = this.props;
 
 		api.getPostDetails(params.post_id).then((post)=>{
@@ -50,11 +44,19 @@ class EditPost extends Component {
 		}).then(()=> {
 
 			const { id, title, author, category, body } = this.props.currentPost;
-			console.log("currentPost", this.props.currentPost);
 			this.setState({id: id, title: title, category: category, author: author, body: body});
 		})
 
 	}
+
+	componentWillUnmount(){
+		window.removeEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange(){
+		this.setState({width: window.innerWidth});
+	}
+
 
 
 	handleTitleChange(event){
@@ -85,29 +87,183 @@ class EditPost extends Component {
 
 	render(){
 
-		const { errors, redirect } = this.state;
- 		const { category, id } = this.props.currentPost;
+ 		const { errors } = this.state;
+ 		const { redirect } = this.state;
 
- 		return(
+ 		const { width } = this.state;
+		const isMedium = (width <= 899);
+
+		if(isMedium){
+			console.log("not-normal")
+			return(
+				<div className="grid main-container mobile-grid">
+	 				<div className="row">
+	 					<header className="col-12-medium header">
+	 						<h1>My New Post</h1>
+	 					</header>
+	 				</div>
+	 				<div className="row">
+	 					<div className="col-12-medium">
+		 					<Link to="/" className="large-button back-button">Go back</Link>
+	 					</div>
+	 				</div>
+	 				<div className="row">
+	 					<div className="col-12-medium">
+		 					<form className="grid mobile_form" onSubmit={this.handleSubmit}>
+		 						{errors.map(error=>(
+		 							<p key={error}>Error: {error}</p>
+		 						))}
+		 						
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<label className="title">Category:</label>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<SelectCategory handler={this.handleCategoryChange} value={this.state.category}/>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<label className="title">Title:</label>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<input
+	 									id="title"
+	 									value={this.state.title}
+	 									onChange={this.handleTitleChange}
+	 									name="title" type="text" />
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<label className="author">Author:</label>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<input id="author"
+	 									   value={this.state.author}
+	 									   onChange={this.handleAuthorChange}
+	 									   type="text"></input>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<label className="body">Body:</label>
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<textarea id="body"
+	 										  value={this.state.body}
+	 										  onChange={this.handleBodyChange}
+	 										  />
+		 							</div>
+		 						</div>
+		 						<div className="row">
+		 							<div className="col-12-medium">
+		 								<button className="large-button">Submit</button>
+		 							</div>
+		 						</div>
+		 					</form>
+		 					{redirect && (
+		 						<Redirect to="/"/>
+		 					)}
+	 					</div>
+	 					<div className="col-3">
+						</div>
+	 				</div>
+ 				</div>
+			)
+		}
+		else {
+			return(
  			<div className="grid main-container">
  				<div className="row">
  					<header className="col-12 header">
- 						<h1>Edit Post</h1>
+ 						<h1>My New Post</h1>
  					</header>
  				</div>
  				<div className="row">
  					<div className="col-3">
  					</div>
  					<div className="col-6">
-	 					<PostForm data={this.state} handlers={this.handlers} edit={true}/>
-	 					{redirect && (
-	 						<Redirect to={`/${category}/${id}`}/>
-	 					)}
+ 					<form className="grid input_form" onSubmit={this.handleSubmit}>
+	 						{errors.map(error=>(
+	 							<p key={error}>Error: {error}</p>
+	 							))}
+	 						<div className="row">
+	 							<div className="col-3">
+	 								<Link to="/" className="large-button back-button">Go back</Link>
+	 							</div>
+	 							<div className="col-9">
+	 							</div>
+	 						</div>
+	 						<div className="row">
+	 							<div className="col-3">
+	 								<label className="title">Category:</label>
+	 							</div>
+	 							<div className="col-9">
+	 								<SelectCategory handler={this.handleCategoryChange} value={this.state.category}/>
+	 							</div>
+	 						</div>
+	 						<div className="row">
+	 							<div className="col-3">
+	 								<label className="title">Title:</label>
+	 							</div>
+	 							<div className="col-9">
+	 								<input
+	 									id="title"
+	 									value={this.state.title}
+	 									onChange={this.handleTitleChange}
+	 									name="title" type="text" />
+	 							</div>
+	 						</div>
+	 						<div className="row">
+	 							<div className="col-3">
+	 								<label className="author">Author:</label>
+	 							</div>
+	 							<div className="col-9">
+	 								<input id="author"
+	 									   value={this.state.author}
+	 									   onChange={this.handleAuthorChange}
+	 									   type="text"></input>
+	 							</div>
+	 						</div>
+	 						<div className="row">
+	 							<div className="col-3">
+	 								<label className="body">Body:</label>
+	 							</div>
+	 							<div className="col-9">
+	 								<textarea id="body"
+	 										  value={this.state.body}
+	 										  onChange={this.handleBodyChange}
+	 										  rows="10" cols="30"/>
+	 							</div>
+	 						</div>
+	 						<div className="row">
+	 							<div className="col-3">
+
+	 							</div>
+	 							<div className="col-9">
+	 								<button className="large-button">Submit</button>
+	 							</div>
+	 						</div>
+	 				</form>
+ 					{redirect && (
+ 						<Redirect to="/"/>
+ 					)}
  					</div>
  				</div>
  			</div>
-		);
-	}
+ 			)
+		}
+
+ 	}s
 }
 
 

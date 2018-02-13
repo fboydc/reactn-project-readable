@@ -6,11 +6,11 @@ const defaultData = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
-    category: 'react',
-    voteScore: 6,
+    title: 'Zelda: Oracle of Ages',
+    body: 'A lot like Oracle of Seasons, except with more puzzles and a way less irritating overworld! It was this Zelda game that made me realize that the puzzles are my favorite part of Zelda games. I also like the dungeons more in Oracle of Ages, especially Mermaid\'s Cave and Jabu-Jabu\'s Belly. It was nice being able to visit the Zoras again. Finally I like the music in the game more too, especially the present Lynna City.',
+    author: 'GameSpot.com (drekula2)',
+    category: 'videogames',
+    voteScore: 10,
     deleted: false,
     commentCount: 2
   },

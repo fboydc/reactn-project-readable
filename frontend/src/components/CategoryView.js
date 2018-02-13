@@ -44,7 +44,7 @@ class CategoryView extends Component {
 				<div className="grid main-container mobile-grid">
 					<div className="row">
 			          <header className="col-12 header">
-			            <h1>Check Out These Posts</h1>
+			            <h1>Cool Posts</h1>
 			          </header>
 			        </div>
 			        <div className="row">
@@ -62,7 +62,7 @@ class CategoryView extends Component {
         		<div className="grid main-container">
 					<div className="row">
 			          <header className="col-12 header">
-			            <h1>Check Out These Posts</h1>
+			            <h1>Cool Posts</h1>
 			          </header>
 			        </div>
 			        <div className="row">

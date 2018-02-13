@@ -11,7 +11,7 @@ class Comments extends Component {
 
 		if(comments.length > 0){
 			return(
-			<div className="col-12">
+			<div className="col-12 col-12-medium">
 
 				{
 					comments.map((comment)=>(

@@ -6,8 +6,8 @@ let db = {}
 const defaultData = {
   categories: [
       {
-        name: 'react',
-        path: 'react'
+        name: 'videogames',
+        path: 'videogames'
       },
       {
         name: 'redux',

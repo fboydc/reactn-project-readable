@@ -16,6 +16,7 @@
 	text-align: justify;
 	border-radius: 6px;
 	padding: 10px;
+	white-space: pre-line;
 }
 
 .author {
@@ -65,3 +66,49 @@
 	background-color: rgba(255, 255, 255, 0.75);
 
 }
+
+@media screen and (max-width: 900px){
+	body {
+		font-size: 20px;
+	}
+
+	.postdetail-container {
+		padding: 15px;
+	}
+
+	.comments-grid {
+		margin: 0;
+	}
+
+	.postdetail-newcomment-modal {
+		width: 90%;
+		height: 90%;
+		margin: 0 auto;
+		position: absolute;
+		top: 0px;
+	    left: 0px;
+	    right: 0px;
+	    bottom: 0px;
+	    background-color: #FFFF;
+	    border-radius: 25px;
+	    border: 1px solid #ccc;
+	    padding: 20px;
+
+	}
+
+	.postdetail-newcomment-modal input {
+		border-radius: 5px;
+		height: 25px;
+		width: 100%;
+	}
+
+	.postdetail-newcomment-modal textarea {
+		width: 100%;
+		height: 200px;
+	} 
+
+	.postdetail-newcomment-modal .submit-modal {
+		width: 100%;
+	}
+}
+

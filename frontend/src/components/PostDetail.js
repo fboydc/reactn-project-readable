@@ -90,34 +90,34 @@ class PostDetail extends Component {
 				)
 
 		}
-
+        
 
 		return(
 
 			<div className="grid postdetail-container">
 				<div className="row">
-					<div className="col-12">
+					<div className="col-12 col-12-medium">
 						<Link to="/" className="large-button">Take me back</Link>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-12">
+					<div className="col-12 col-12-medium">
 						<h2 className="postdetail-header"> >> {title}</h2>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span>Date of creation: {date}</span>
 					</div>
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span className="right">score: {voteScore}</span>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						By: <span className="author">{author}</span>
 					</div>
-					<div className="col-6">
+					<div className="col-6 col-6-medium">
 						<span className="right">
 							<VotingOptions id={id} currentPost={true}/>
 						</span>
@@ -125,23 +125,23 @@ class PostDetail extends Component {
 				</div>
 				<div>
 					<div className="row">
-						<div className="col-6">
+						<div className="col-6 col-12-medium">
 							<Link to={`../edit/${id}`}><FontAwesome name="edit" className="editbutton"/></Link>
 							<button onClick={this.deletePost} className="deletebutton"><FontAwesome name="trash-alt"/></button>
 						</div>
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-12">
+					<div className="col-12 col-12-medium">
 						<p className="postdetail-body">{body}</p>
 					</div>
 				</div>
 				<div className="comments-grid">
 					<div className="row">
-						<div className="col-6">
+						<div className="col-6 col-12-medium">
 							<h3 className="comments-section-title">Comments: {comments.length}</h3>
 						</div>
-						<div className="col-6">
+						<div className="col-6 col-12-medium">
 							<span className="right"><NewComment /></span>
 						</div>
 					</div>
