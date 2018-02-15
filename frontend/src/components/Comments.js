@@ -1,3 +1,19 @@
+/*******************************************************************************************
+Component: Comments.js
+Description:
+Shows all the comments for a single post.
+
+Defined Properties:
+-none
+
+
+Class Methods:
+-none
+
+React Methods:
+2. render - see method description
+
+********************************************************************************************/
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CommentLine from './CommentLine';
@@ -6,8 +22,14 @@ import CommentLine from './CommentLine';
 
 class Comments extends Component {
 
+	/*******************************************************************
+	Name: render
+	Description:
+
+	********************************************************************/
 	render(){
 		const { comments } = this.props
+		const {isMedium} = this.props
 
 		if(comments.length > 0){
 			return(
@@ -15,7 +37,7 @@ class Comments extends Component {
 
 				{
 					comments.map((comment)=>(
-						<CommentLine comment={comment} key={comment.id} />
+						<CommentLine comment={comment} key={comment.id} isMedium={isMedium}/>
 
 					))
 				}

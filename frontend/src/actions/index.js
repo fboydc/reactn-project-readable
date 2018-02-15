@@ -16,6 +16,7 @@ export const LOAD_COMMENT = 'LOAD_COMMENT';
 export const DELETE_POST = 'DELETE_POST';
 export const SORT_BY_SCORE = 'SORT_BY_SCORE';
 export const SORT_BY_TIMESTAMP = 'SORT_BY_TIMESTAMP';
+export const VIEWPORT_CHANGE = 'VIEWPORT_CHANGE';
 
 
 
@@ -168,6 +169,18 @@ export const downvoteComment = (id)=> {
 		id
 	}
 }
+
+
+
+export const viewportChange = (width)=>{
+	return {
+		type: VIEWPORT_CHANGE,
+		width
+	}
+}
+
+
+
 
 
 

@@ -24,6 +24,8 @@ class PostDetail extends Component {
 		this.closeCommentsModal = this.closeCommentsModal.bind(this);
 		this.handleCommentAuthorChange = this.handleCommentAuthorChange.bind(this);
 		this.handleCommentBodyChange = this.handleCommentBodyChange.bind(this);
+		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
 		this.state = {
 			redirect: false,
 			commentAuthor: '',
@@ -40,10 +42,16 @@ class PostDetail extends Component {
 
 	componentWillMount(){
 		Modal.setAppElement('body');
+		this.handleWindowSizeChange();
 		const { match: { params } } = this.props;
 		this.props.getPostDetails(params.post_id);
 		this.props.getComments(params.post_id);
+		window.addEventListener('resize', this.handleWindowSizeChange);
 
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener('resize', this.handleWindowSizeChange);
 	}
 
 	deletePost(){
@@ -72,9 +80,20 @@ class PostDetail extends Component {
 		this.setState({commentBody: e.target.value})
 	}
 
+
+	handleWindowSizeChange(){
+		this.props.viewportChange(window.innerWidth);
+	}
+
 	render(){
 		const {id, title, body, author, date, voteScore, comments} = this.props.currentPost;
 		const { redirect } = this.state;
+		const { width } = this.props;
+
+		console.log("width in post detail", width);
+		const isMedium = (width <= 899);
+
+
 		if(redirect){
 			return (redirect && (<Redirect to="/"/>))
 		}else if(!id){
@@ -90,7 +109,7 @@ class PostDetail extends Component {
 				)
 
 		}
-        
+
 
 		return(
 
@@ -119,7 +138,7 @@ class PostDetail extends Component {
 					</div>
 					<div className="col-6 col-6-medium">
 						<span className="right">
-							<VotingOptions id={id} currentPost={true}/>
+							<VotingOptions id={id} currentPost={true} isMedium={isMedium}/>
 						</span>
 					</div>
 				</div>
@@ -142,11 +161,11 @@ class PostDetail extends Component {
 							<h3 className="comments-section-title">Comments: {comments.length}</h3>
 						</div>
 						<div className="col-6 col-12-medium">
-							<span className="right"><NewComment /></span>
+							<span className="right"><NewComment isMedium={isMedium}/></span>
 						</div>
 					</div>
 					<div className="row">
-						<Comments />
+						<Comments isMedium={isMedium}/>
 					</div>
 				</div>
 			</div>
@@ -159,9 +178,9 @@ class PostDetail extends Component {
 }
 
 
-function mapStateToProps({ currentPost }){
-	console.log("current post", currentPost);
+function mapStateToProps({ currentPost, viewportSize }){
 	return {
+		width: viewportSize.width,
 		currentPost: {
 			...currentPost,
 			date: convertDate(new Date(currentPost.timestamp))
@@ -171,6 +190,9 @@ function mapStateToProps({ currentPost }){
 
 function mapDispatchToProps(dispatch){
 	return {
+		viewportChange: (width)=>{
+			dispatch(actions.viewportChange(width))
+		},
 		getPostDetails: (id)=> {
 			api.getPostDetails(id).then((post)=>{
 				dispatch(actions.loadPost(post));
@@ -184,7 +206,8 @@ function mapDispatchToProps(dispatch){
 		deletePost: (id) =>(
 			api.deletePost(id).then((post)=>{
 			dispatch(actions.deletePost(post.id))
-		}))
+		})),
+
 
 	}
 }

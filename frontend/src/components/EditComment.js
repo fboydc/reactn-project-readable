@@ -16,8 +16,7 @@ class EditComment extends Component {
 			author: '',
 			body: '',
 			open: false,
-			errors: [],
-			width: window.innerWidth
+			errors: []
 
 		}
 
@@ -25,7 +24,7 @@ class EditComment extends Component {
 		this.closeModal = this.closeModal.bind(this);
 		this.onBodyChange = this.onBodyChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
 	}
 
 	openModal(){
@@ -68,17 +67,11 @@ class EditComment extends Component {
 	}
 
 
-	componentWillMount() {
-		window.addEventListener('resize', this.handleWindowSizeChange);
-	}
 
-	componentWillUnmount(){
-		window.removeEventListener('resize', this.handleWindowSizeChange);
-	}
 
-	handleWindowSizeChange(){
-		this.setState({width: window.innerWidth});
-	}
+
+
+
 
 
 
@@ -86,8 +79,7 @@ class EditComment extends Component {
 	render(){
 
 		const {errors} = this.state;
-		const { width } = this.state;
-		const isMedium = (width <= 899);
+		const {isMedium} = this.props;
 
 		if(isMedium){
 			return (<span>
@@ -198,7 +190,7 @@ class EditComment extends Component {
 			</span>
 		);
 		}
-		
+
 	}
 }
 

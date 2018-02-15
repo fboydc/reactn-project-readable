@@ -18,8 +18,7 @@ class NewComment extends Component {
 			open: false,
 			author:'',
 			body: '',
-			errors: [],
-			width: window.innerWidth
+			errors: []
 		}
 
 		this.openModal = this.openModal.bind(this);
@@ -27,7 +26,7 @@ class NewComment extends Component {
 		this.onAuthorChange = this.onAuthorChange.bind(this);
 		this.onBodyChange = this.onBodyChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
 	}
 
 	openModal(){
@@ -64,23 +63,15 @@ class NewComment extends Component {
 
 	}
 
-	componentWillMount() {
-		window.addEventListener('resize', this.handleWindowSizeChange);
-	}
 
-	componentWillUnmount(){
-		window.removeEventListener('resize', this.handleWindowSizeChange);
-	}
 
-	handleWindowSizeChange(){
-		this.setState({width: window.innerWidth});
-	}
+
 
 
 	render(){
 		const {errors} = this.state;
 		const { width } = this.state;
-		const isMedium = (width <= 899);
+		const {isMedium} = this.props;
 
 		if(isMedium){
 			return (
@@ -195,7 +186,7 @@ class NewComment extends Component {
 			  </span>);
 		}
 
-		
+
 	}
 }
 

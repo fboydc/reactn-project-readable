@@ -20,8 +20,7 @@ class EditPost extends Component {
 			author: '',
 			category: '',
 			title: '',
-			body: '',
-			width: window.innerWidth
+			body: ''
 		}
 
 		this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -36,13 +35,11 @@ class EditPost extends Component {
 
 
 	componentWillMount(){
+		this.handleWindowSizeChange();
 		window.addEventListener('resize', this.handleWindowSizeChange);
 		const { match: { params }} = this.props;
 
-		api.getPostDetails(params.post_id).then((post)=>{
-			this.props.dispatch(actions.loadPost(post))
-		}).then(()=> {
-
+		this.props.getPostDetails(params.post_id).then(()=> {
 			const { id, title, author, category, body } = this.props.currentPost;
 			this.setState({id: id, title: title, category: category, author: author, body: body});
 		})
@@ -54,7 +51,7 @@ class EditPost extends Component {
 	}
 
 	handleWindowSizeChange(){
-		this.setState({width: window.innerWidth});
+		this.props.viewportChange(window.innerWidth);
 	}
 
 
@@ -90,7 +87,7 @@ class EditPost extends Component {
  		const { errors } = this.state;
  		const { redirect } = this.state;
 
- 		const { width } = this.state;
+ 		const { width } = this.props;
 		const isMedium = (width <= 899);
 
 		if(isMedium){
@@ -113,7 +110,7 @@ class EditPost extends Component {
 		 						{errors.map(error=>(
 		 							<p key={error}>Error: {error}</p>
 		 						))}
-		 						
+
 		 						<div className="row">
 		 							<div className="col-12-medium">
 		 								<label className="title">Category:</label>
@@ -268,16 +265,27 @@ class EditPost extends Component {
 
 
 
-function mapStateToProps({ currentPost }){
+function mapStateToProps({ currentPost, viewportSize }){
 	return {
-		currentPost: currentPost
+		currentPost: currentPost,
+		width: viewportSize.width
+	}
+}
+
+
+function mapDispatchToProps(dispatch){
+	return {
+		viewportChange: (width)=>{
+			dispatch(actions.viewportChange(width))
+		},
+		getPostDetails: (id)=>(
+			api.getPostDetails(id).then((post)=>{
+				dispatch(actions.loadPost(post))
+			})
+		)
 	}
 }
 
 
 
-
-
-
-
-export default connect(mapStateToProps, null)(EditPost)
+export default connect(mapStateToProps, mapDispatchToProps)(EditPost)

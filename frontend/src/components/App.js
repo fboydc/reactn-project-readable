@@ -1,3 +1,15 @@
+/*******************************************************************************************
+Component: App.js
+Description:
+The purpose of this component is to map each view with it's corresponding URL.
+
+Defiend Properties:
+None
+
+React Methods:
+1. render - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import '../css/framework.css'
 import CategoryView from './CategoryView';
@@ -21,7 +33,19 @@ import '../css/mobile.css';
 class App extends Component {
 
 
+  /********************************************************************
+  Name: render
+  Description:
+  Routes our url to the correspding URL.
 
+  Child Components
+  1. Route - CategoryView
+  2. Route - NewPost
+  2. Route - CategoryView
+  2. Route - EditPost
+  2. Route - PostDetail
+
+  *********************************************************************/
   render() {
     return (
       <Switch>

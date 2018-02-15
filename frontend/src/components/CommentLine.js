@@ -1,3 +1,24 @@
+/*******************************************************************************************
+Component: CommentLine.js
+Description:
+Represents a single comment shown in our comments component.
+
+Defined Properties:
+1.state - our react component state, used only for our edit comment
+   form.
+
+2. deleteComment - Function
+
+
+Class Methods:
+1. deleteComment - see method description
+
+React Methods:
+1. componentWillMount - see description
+2. render - see method description
+
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import * as api from  '../utils/api';
 import * as actions from '../actions';
@@ -15,18 +36,22 @@ class CommentLine extends Component {
 		this.state = {
 			commentAuthor: '',
 			commentBody: '',
-			open: false,
-			width: window.innerWidth
+			open: false
 		}
 		this.deleteComment = this.deleteComment.bind(this);
-		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
 	}
 
 
 
 
 
-
+	/*******************************************************************
+	Name: deleteComment
+	Description:
+	makes the api call to delete our comment and dispatches our deleteComment
+	action syncing our redux store with our api database.
+	********************************************************************/
 	deleteComment(){
 		const { id } = this.props.comment;
 
@@ -34,26 +59,37 @@ class CommentLine extends Component {
 
 	}
 
+	/*******************************************************************
+	Name: componentWillMount
+	Description:
+	we set the state of our commentline to its whatever its corresponding
+	comment is. This way, when we edit our comment, our comment modal will
+	have its form pre-loaded with its data.
+	********************************************************************/
 	componentWillMount(){
-		window.addEventListener('resize', this.handleWindowSizeChange);
 		const { commentAuthor, commentBody} = this.props;
 		this.setState({commentAuthor, commentBody});
 	}
 
-	componentWillUnmount(){
-		window.removeEventListener('resize', this.handleWindowSizeChange);
-	}
-
-	handleWindowSizeChange(){
-		this.setState({width: window.innerWidth});
-	}
 
 
+
+
+	/*******************************************************************
+	Name: render
+	Description:
+	renders our comment along with its edit/delete like/dislike controls.
+	Again, taking into consideration the width of our viewport (passed down from our
+	PostDetail component) it will render the appropiate layout.
+
+	Child Components:
+	EditComment - props: id<String>, isMedium<boolean>
+	CommentVoting - props: id<String>
+	********************************************************************/
 	render(){
-		const { comment } = this.props
+		const { comment, isMedium } = this.props
 
-		const { width } = this.state;
-		const isMedium = (width <= 899);
+
 
 		if(isMedium){
 			return (
@@ -61,7 +97,7 @@ class CommentLine extends Component {
 					<div className="row">
 						<div className="col-12-medium comment-title">
 							<strong>{comment.author}:</strong>
-							<span className="edit-delete"><EditComment id={comment.id}/>
+							<span className="edit-delete"><EditComment id={comment.id} isMedium={isMedium}/>
 							<button type="button" onClick={this.deleteComment} className="deletebutton"><FontAwesome name="trash"/></button></span>
 						</div>
 					</div>
@@ -126,7 +162,7 @@ class CommentLine extends Component {
 
 			)
 		}
-		
+
 	}
 }
 

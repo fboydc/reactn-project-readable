@@ -12,12 +12,8 @@ class VotingOptions extends Component {
 
 	constructor(){
 		super();
-		this.state = {
-			width: window.innerWidth
-		}
 		this.upVote = this.upVote.bind(this);
 		this.downVote = this.downVote.bind(this);
-		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 	}
 
 
@@ -34,23 +30,11 @@ class VotingOptions extends Component {
 		this.props.downVote(id, currentPost);
 	}
 
-	componentWillMount(){
-		window.addEventListener('resize', this.handleWindowSizeChange);
-	}
 
-	componentWillUnmount(){
-		window.removeEventListener('resize', this.handleWindowSizeChange);
-	}
-
-	handleWindowSizeChange(){
-		this.setState({width: window.innerWidth});
-	}
 
 	render(){
-		const { width } = this.state;
-		const isMedium = (width <= 899);
 
-		if(isMedium){
+		if(this.props.isMedium){
 			return(
 			<div>
 				<button type="button" onClick={this.upVote} className="mobile-likebutton"><FontAwesome name="thumbs-up"/></button>|<button type="button" onClick={this.downVote} className="mobile-likebutton"><FontAwesome name="thumbs-down"/></button>

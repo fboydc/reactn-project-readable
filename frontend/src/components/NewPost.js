@@ -19,8 +19,7 @@ class NewPost extends Component {
 			author: '',
 			category: '',
 			title: '',
-			body: '',
-			width: window.innerWidth
+			body: ''
 		}
 
 		this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -35,6 +34,7 @@ class NewPost extends Component {
 	}
 
 	componentWillMount() {
+		this.handleWindowSizeChange();
 		window.addEventListener('resize', this.handleWindowSizeChange);
 	}
 
@@ -43,7 +43,7 @@ class NewPost extends Component {
 	}
 
 	handleWindowSizeChange(){
-		this.setState({width: window.innerWidth});
+		this.props.viewportChange(window.innerWidth);
 	}
 
 
@@ -90,7 +90,7 @@ class NewPost extends Component {
  		const { errors } = this.state;
  		const { redirect } = this.state;
 
- 		const { width } = this.state;
+ 		const { width } = this.props;
 		const isMedium = (width <= 899);
 
 		if(isMedium){
@@ -112,7 +112,7 @@ class NewPost extends Component {
 		 						{errors.map(error=>(
 		 							<p key={error}>Error: {error}</p>
 		 						))}
-		 						
+
 		 						<div className="row">
 		 							<div className="col-12-medium">
 		 								<label className="title">Category:</label>
@@ -265,17 +265,26 @@ class NewPost extends Component {
  	}
 }
 
-
+function mapStateToProps({viewportSize}){
+	return {
+		width: viewportSize.width
+	}
+}
 
 
 function mapDispatchToProps(dispatch){
 	return {
+		viewportChange: (width)=>{
+			dispatch(actions.viewportChange(width))
+		},
+
 		newPost: (title, body, author, category)=>api.addPost(title, body, author, category)
 		.then((post) => {dispatch(actions.addPost(post))} )
+
 
 	}
 
 }
 
 
-export default connect(null, mapDispatchToProps)(NewPost)
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost)

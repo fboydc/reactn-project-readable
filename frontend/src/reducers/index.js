@@ -18,7 +18,8 @@ import {
 	DOWN_VOTE_COMMENT,
 	DELETE_POST,
 	SORT_BY_SCORE,
-	SORT_BY_TIMESTAMP
+	SORT_BY_TIMESTAMP,
+	VIEWPORT_CHANGE
 } from '../actions';
 
 
@@ -284,12 +285,24 @@ const currentComment = (state = {}, action)=> {
 	}
 }
 
+const viewportSize = (state = {}, action) => {
+	switch(action.type){
+		case VIEWPORT_CHANGE:
+			return {
+				width: action.width
+			}
+		default:
+			return state;
+	}
+}
+
 
 
 export default combineReducers({
 	posts,
 	categories,
 	currentPost,
-	currentComment
+	currentComment,
+	viewportSize
 })
 

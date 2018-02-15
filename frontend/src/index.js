@@ -1,3 +1,11 @@
+/*******************************************************************************************
+Name: index.js
+Description:
+The point of entry of our application. We encapsulate everything under the BrowserRouter tag,
+so that React Router can take care of our url changes/page navigation. We also provide redux to
+all of our components so that the can access state.
+********************************************************************************************/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
