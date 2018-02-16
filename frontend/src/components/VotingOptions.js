@@ -1,3 +1,21 @@
+/*******************************************************************************************
+Component: VotingOptions.js
+Description:
+Renders our voting mechanism, used for upvoting or downvoting a post.
+
+Defined Properties:
+1. upVote - <Function>
+2. downVote - <Function>
+
+Class Methods:
+1. upVote - see method description
+2. downVote - see method description
+
+
+React Methods:
+3. render - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as api from '../utils/api';
@@ -16,22 +34,42 @@ class VotingOptions extends Component {
 		this.downVote = this.downVote.bind(this);
 	}
 
-
+	/******************************************
+	Name: upVote
+	Parameters: none
+	Returns: nothing
+	Description:
+	sends an UPDATE request to api-server, which
+	increase the vote score in the backend, and
+	updates our redux store accordingly
+	*******************************************/
 	upVote(e){
-		console.log("props", this.props);
 		const { id, currentPost } = this.props;
 		this.props.upVote(id, currentPost);
 
 	}
 
+	/******************************************
+	Name: downVote
+	Paremeters: none
+	Returns: nothing
+	Description:
+	sends an UPDATE request to api-server, which
+	decreases the vote score in the backend, and
+	updates our redux store accordingly
+	*******************************************/
 	downVote(e){
-		console.log("props", this.props);
 		const { id, currentPost } = this.props;
 		this.props.downVote(id, currentPost);
 	}
 
 
-
+	/******************************************
+	Name: render
+	Description:
+	renders our two buttons for upvoting/downvoting
+	a post.
+	*******************************************/
 	render(){
 
 		if(this.props.isMedium){

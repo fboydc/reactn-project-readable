@@ -1,3 +1,29 @@
+/*******************************************************************************************
+Component: EditComment.js
+Description:
+Displays our control and modal for editing our comment's text.
+
+Defined Properties:
+1. state: used for handling our controlled form
+	author <String>
+	body <String>
+	open <boolean>
+	errors <array<String>>
+2. openModal  - <Function>
+3. closeModal - <Function>
+4. onBodyChange - <Function>
+5. handleSubmit - <Function>
+
+Class Methods:
+1. openModal - see method description
+2. closeModal - see method description
+3. onBodyChange - see method description
+4. handleSubmit - see method description
+
+React Methods:
+2. render - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import * as api from '../utils/api';
@@ -27,6 +53,18 @@ class EditComment extends Component {
 
 	}
 
+
+	/*******************************************************
+	Name: openModal
+	Returns: nothing
+	Parameters: none
+	Description:
+	sets our state's open property to true, causing a rerender
+	and consequently making our modal show. Makes an api request
+	to retreive our comment data, and then update our component
+	state with the relevant date which in turn updates our comment
+	edit form.
+	*********************************************************/
 	openModal(){
 		this.setState({open: true});
 		this.props.getCommentDetails(this.props.id).then(()=>{
@@ -39,17 +77,46 @@ class EditComment extends Component {
 
 	}
 
+	/*******************************************************
+	Name: closeModal
+	Returns: nothing
+	Parameters: none
+	Description:
+	Reset our component state so that the fields are empty,
+	and close our modal by setting our component's state open
+	property to false.
+	*********************************************************/
 	closeModal(){
 		this.setState({author:'', body: '', open: false, errors: []});
 
 	}
 
 
+	/*******************************************************
+	Name: onBodyChange
+	Returns: nothing
+	Parameters: <Event>
+	Description:
+	set our state to the current text that the user has typed
+	in the text box, so that our controlled component shows
+	the actual value.
+	*********************************************************/
 	onBodyChange(e){
 		this.setState({body: e.target.value})
 	}
 
 
+	/*******************************************************
+	Name: handleSubmit
+	Returns: nothing
+	Parameters: <Event>
+	Description:
+	Gets the actual values typed by the user from the input and textarea
+	fields, and if there are no errors (i.e empty fields), we send
+	an api request with the typed values back to the server-api along
+	with the comment id. Upon return from this request, we update and
+	sync our redux store.
+	*********************************************************/
 	handleSubmit(e){
 		e.preventDefault();
 		const {id} = this.props.currentComment;
@@ -75,7 +142,19 @@ class EditComment extends Component {
 
 
 
+	/*******************************************************
+	Name: render
+	Description:
+	renders our button and modal for editing our respective comment.
+	Again just like in previous components, depending on the viewport
+	size we will render the appropiate html layout (conditioned by our
+	passed isMedium property).
 
+
+	Child Components:
+	1.Modal - imported from react-modal package
+
+	*********************************************************/
 	render(){
 
 		const {errors} = this.state;

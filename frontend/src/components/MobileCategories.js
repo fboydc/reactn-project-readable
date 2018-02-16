@@ -1,3 +1,20 @@
+/*******************************************************************************************
+Component: MobileCategories.js
+Description:
+Display a dropdown category menu for mobile viewports.
+
+Defined Properties:
+none
+
+Class Methods:
+none
+
+React Methods:
+1. componentWillMount - see description
+2. render - see method description
+********************************************************************************************/
+
+
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -7,12 +24,25 @@ import { Link } from 'react-router-dom';
 
 class MobileCategories extends Component {
 
+	/*******************************************************
+	Name: componentWillMount
+	Description:
+	Get all the categories from our server-api, and update our
+	redux store.
+	*********************************************************/
 	componentWillMount(){
 		this.props.getAllCategories();
 	}
 
 
-
+	/*******************************************************
+	Name: render
+	Description:
+	renders a list of the existing categories, containing a anchor
+	with a url path to the particular category. When clicking on any
+	one of them we also want our menu to close, so that the user can
+	see the result.
+	*********************************************************/
 	render(){
 		const { categories } = this.props
 

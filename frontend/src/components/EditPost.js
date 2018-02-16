@@ -1,3 +1,35 @@
+/*******************************************************************************************
+Component: EditPost.js
+Description:
+Displays our edit post view.
+
+Defined Properties:
+1. state: used for handling our controlled form
+	errors <array<String>>
+	redirect <boolean>
+	id <String>
+	author <String>
+	category <String>
+	title <String>
+	body <String>
+
+2. handleTitleChange - <Function>
+3. handleAuthorChange - <Function>
+4. handleBodyChange - <Function>
+5. handleCategoryChange - <Function>
+6. handleSubmit - <Function>
+
+Class Methods:
+2. handleTitleChange - see method description
+3. handleAuthorChange - see method description
+4. handleBodyChange - see method description
+5. handleCategoryChange - see method description
+6. handleSubmit - see method description
+
+React Methods:
+2. render - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as api from '../utils/api'
@@ -33,7 +65,14 @@ class EditPost extends Component {
 	}
 
 
-
+	/*******************************************************
+	Name: componentWillMount
+	Description:
+	initially dispatches our viewportChange action, so that when
+	our app is loaded in smaller viewports it loads the appropiate
+	html. We also retreive all the post from our api-server and update
+	our redux store accordingly
+	*********************************************************/
 	componentWillMount(){
 		this.handleWindowSizeChange();
 		window.addEventListener('resize', this.handleWindowSizeChange);
@@ -46,29 +85,85 @@ class EditPost extends Component {
 
 	}
 
+	/*******************************************************
+	Name: componentWillUnmount
+	Description:
+	We discard of out event listener as soon as we leave this page.
+	*********************************************************/
 	componentWillUnmount(){
 		window.removeEventListener('resize', this.handleWindowSizeChange);
 	}
 
+
+	/*******************************************************
+	Name: handleWindowSizeChange
+	Parameters: none
+	Returns: nothing
+	Description:
+	Updates our redux store with the current size of the viewport,
+	causing a rerender and loading the appropiate layout.
+	*********************************************************/
 	handleWindowSizeChange(){
 		this.props.viewportChange(window.innerWidth);
 	}
 
 
-
+	/*******************************************************
+	Name: handleTitleChange
+	Parameters: <Event>
+	Returns: nothing
+	Description:
+	updates our component state, and hence our controlled component's
+	title field
+	*********************************************************/
 	handleTitleChange(event){
 		this.setState({title: event.target.value});
 	}
+
+	/*******************************************************
+	Name: handleAuthorChange
+	Parameters: <Event>
+	Returns: nothing
+	Description:
+	updates our component state, and hence our controlled component's
+	author field
+	*********************************************************/
 	handleAuthorChange(event){
 		this.setState({author: event.target.value});
 	}
+
+	/*******************************************************
+	Name: handleBodyChange
+	Parameters: <Event>
+	Returns: nothing
+	Description:
+	updates our component state, and hence our controlled component's
+	body field
+	*********************************************************/
 	handleBodyChange(event){
 		this.setState({body: event.target.value});
 	}
+
+	/*******************************************************
+	Name: handleCategoryChange
+	Parameters: <Event>
+	Returns: nothing
+	Description:
+	updates our component state, and hence our controlled component's
+	category field
+	*********************************************************/
 	handleCategoryChange(event){
 		this.setState({category: event.target.value});
 	}
 
+	/*******************************************************
+	Name: handleSubmit
+	Parameters: <Event>
+	Returns: nothing
+	Description:
+	submits our form's input to our api-server and updates the
+	corresponding post.
+	*********************************************************/
 	handleSubmit(e){
 		e.preventDefault();
 
@@ -81,7 +176,12 @@ class EditPost extends Component {
 
 	}
 
-
+	/*******************************************************
+	Name: render
+	Description:
+	Once again, depending on our isMedium boolean, we render the
+	appropiate html for our viewport.
+	*********************************************************/
 	render(){
 
  		const { errors } = this.state;

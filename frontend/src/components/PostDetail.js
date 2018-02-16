@@ -1,3 +1,25 @@
+/*******************************************************************************************
+Component: PostDetail.js
+Description:
+Displays our post detail view.
+
+Defined Properties:
+1. state: used for handling our controlled form, when adding a new
+	redirect <boolean>
+
+2. deletePost - <Function>
+
+Class Methods:
+1. deletePost - see method description
+2. handleWindowSizeChange - see method description
+
+React Methods:
+1. componentWillMount - see method description
+2. componentWillUnmount - see method descrition
+3. render - see method description
+********************************************************************************************/
+
+
 import React, { Component } from 'react';
 import * as api from '../utils/api';
 import { convertDate } from '../utils/dateconverter';
@@ -20,26 +42,22 @@ class PostDetail extends Component {
 	constructor(){
 		super();
 		this.deletePost = this.deletePost.bind(this);
-		this.openCommentsModal = this.openCommentsModal.bind(this);
-		this.closeCommentsModal = this.closeCommentsModal.bind(this);
-		this.handleCommentAuthorChange = this.handleCommentAuthorChange.bind(this);
-		this.handleCommentBodyChange = this.handleCommentBodyChange.bind(this);
-		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 
 		this.state = {
 			redirect: false,
-			commentAuthor: '',
-			commentBody: '',
-			open: false
 		}
 
-		this.handlers = {
-			onAuthorChange: this.handleCommentAuthorChange,
-			onBodyChange: this.handleCommentBodyChange,
-			closeModal: this.closeCommentsModal
-		}
+
 	}
-
+	/*********************************************************
+	Name: componentWillMount
+	Description:
+	binds our react-modal with the 'body' html element,
+	preloads our redux store with the size of the viewport,
+	and gets the data and comments of the post passed by
+	react-router-dom props. We also bind our viewport size handler
+	the window 'resize' event.
+	*********************************************************/
 	componentWillMount(){
 		Modal.setAppElement('body');
 		this.handleWindowSizeChange();
@@ -50,10 +68,23 @@ class PostDetail extends Component {
 
 	}
 
+	/*********************************************************
+	Name: componentWillUnmount
+	Description:
+	remove our event listener from the window object.
+	*********************************************************/
 	componentWillUnmount(){
 		window.removeEventListener('resize', this.handleWindowSizeChange);
 	}
 
+	/*********************************************************
+	Name: deletePost
+	Parameters: none
+	returns: nothing
+	Description:
+	makes a DELETE request to our api-server, and updates
+	the redux store accordingly
+	*********************************************************/
 	deletePost(){
 		const { id } = this.props.currentPost;
 
@@ -62,35 +93,38 @@ class PostDetail extends Component {
 		});
 	}
 
-	openCommentsModal(){
-		this.setState({open: true});
-	}
 
-	closeCommentsModal(){
-
-		this.setState({open: false, commentAuthor: '', commentBody: '', errors: []});
-	}
-
-
-	handleCommentAuthorChange(e){
-		this.setState({commentAuthor: e.target.value})
-	}
-
-	handleCommentBodyChange(e){
-		this.setState({commentBody: e.target.value})
-	}
-
-
+	/*********************************************************
+	Name: handleWindowSizeChange
+	Parameters: none
+	returns: nothing
+	Description:
+	Our resize event handler, which updates our redux store
+	accordingly.
+	*********************************************************/
 	handleWindowSizeChange(){
 		this.props.viewportChange(window.innerWidth);
 	}
 
+
+	/*********************************************************
+	Name: render
+	Description:
+	Renders our post data as passed by the react-router-dom,
+	otherwise if this post is not found on the api-server,
+	a simple message shows to the user indicating that this post
+	doesn't exist
+
+	Child Components:
+	1.VotingOptions- props: currentPost <boolean>, isMedium <boolean>,
+	2. Comments - props: isMedium <boolean>
+
+
+	*********************************************************/
 	render(){
 		const {id, title, body, author, date, voteScore, comments} = this.props.currentPost;
 		const { redirect } = this.state;
 		const { width } = this.props;
-
-		console.log("width in post detail", width);
 		const isMedium = (width <= 899);
 
 

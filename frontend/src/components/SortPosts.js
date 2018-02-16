@@ -1,3 +1,25 @@
+/*******************************************************************************************
+Component: SortPosts.js
+Description:
+Renders our sorting control for our post in category view. This will only
+be visible in viewports with sizes > 900 px.
+
+Defined Properties:
+1. State:
+	value - <String> used for our select html element in our sorting controlled component
+2. handleChange -  <Function>
+3. handleSort - <Function>
+
+
+Class Methods:
+1. handleChange - see method description
+2. handleSort - see method description
+
+React Methods:
+2. componentWillMount - see method description
+3. render - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -15,20 +37,41 @@ class SortPosts extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSort = this.handleSort.bind(this);
 	}
-
+	/***************************************
+	Name: componentWillMount
+	Description:
+	Set the default value of our SortPosts component
+	to timestamp or 'date'.
+	***************************************/
 	componentWillMount(){
 		this.setState({value: 'timestamp'});
 
 	}
 
 
-
+	/***************************************
+	Name: handleChange
+	Parameters: <Event>
+	Returns: none
+	Description:
+	change the value of our SortPosts component
+	so that it's reflected whenever the user
+	makes a change.
+	***************************************/
 	handleChange(e){
 		this.setState({value: e.target.value});
 
 
 	}
 
+	/***************************************
+	Name: handleSort
+	Parameters: <Event>
+	Returns: none
+	Description:
+	Call the appropiate action, depending on
+	the selected sorting criteria.
+	***************************************/
 	handleSort(){
 		const { value } = this.state;
 			const { posts } = this.props
@@ -46,6 +89,12 @@ class SortPosts extends Component {
 			}
 	}
 
+	/***************************************
+	Name: render
+	Description:
+	Renders our select html element with the
+	two sorting criteria
+	***************************************/
 	render(){
 
 		return(

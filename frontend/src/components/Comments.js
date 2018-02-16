@@ -1,7 +1,7 @@
 /*******************************************************************************************
 Component: Comments.js
 Description:
-Shows all the comments for a single post.
+Shows all the comments for a single post
 
 Defined Properties:
 -none
@@ -12,8 +12,8 @@ Class Methods:
 
 React Methods:
 2. render - see method description
-
 ********************************************************************************************/
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CommentLine from './CommentLine';
@@ -25,7 +25,13 @@ class Comments extends Component {
 	/*******************************************************************
 	Name: render
 	Description:
+	Renders all the comments passed as props from PostDetail.
+	If no comments are present, then we will render a simple html paragraph
+	indicating so.
 
+
+	Child Components:
+	1. CommentLine - props: comment <Object>, isMedium <boolean>.
 	********************************************************************/
 	render(){
 		const { comments } = this.props

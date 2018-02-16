@@ -1,3 +1,30 @@
+/*******************************************************************************************
+Component: NewComment.js
+Description:
+Displays our control for creating a new comment.
+
+Defined Properties:
+1. state: used for handling our controlled form
+	author <String>
+	body <String>
+	open <boolean>
+	errors <array<String>>
+2. openModal  - <Function>
+3. closeModal - <Function>
+4. onBodyChange - <Function>
+5. handleSubmit - <Function>
+
+Class Methods:
+1. openModal - see method description
+2. closeModal - see method description
+3. onBodyChange - see method description
+4. handleSubmit - see method description
+
+React Methods:
+2. render - see method description
+********************************************************************************************/
+
+
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import * as api from '../utils/api';
@@ -29,22 +56,70 @@ class NewComment extends Component {
 
 	}
 
+	/*******************************************************
+	Name: openModal
+	Returns: nothing
+	Parameters: none
+	Description:
+	sets our state's open property to true, causing a rerender
+	and consequently making our modal show. Makes an api request
+	to retreive our comment data, and then update our component
+	state with the relevant date which in turn updates our comment
+	edit form.
+	*********************************************************/
 	openModal(){
 		this.setState({open: true})
 	}
 
+	/*******************************************************
+	Name: closeModal
+	Returns: nothing
+	Parameters: none
+	Description:
+	Reset our component state so that the fields are empty,
+	and close our modal by setting our component's state open
+	property to false.
+	*********************************************************/
 	closeModal(){
 		this.setState({open: false, author: '', body: '', errors: []})
 	}
 
+	/*******************************************************
+	Name: onAuthorChange
+	Returns: nothing
+	Parameters: <Event>
+	Description:
+	set our state to the current text that the user has typed
+	in the author input, so that our controlled component shows
+	the actual value.
+	*********************************************************/
 	onAuthorChange(e){
 		this.setState({author: e.target.value});
 	}
 
+	/*******************************************************
+	Name: onBodyChange
+	Returns: nothing
+	Parameters: <Event>
+	Description:
+	set our state to the current text that the user has typed
+	in the body input, so that our controlled component shows
+	the actual value.
+	*********************************************************/
 	onBodyChange(e){
 		this.setState({body: e.target.value});
 	}
 
+	/*******************************************************
+	Name: handleSubmit
+	Returns: nothing
+	Parameters: <Event>
+	Description:
+	Handles our form submit; if all validations are passed,
+	I.E. (no input are empty), then we send the data to our
+	api-server, which in turn creates the new post. Consequently,
+	we updated our redux post with thew new post.
+	*********************************************************/
 	handleSubmit(e){
 		e.preventDefault();
 		const { author, body } = this.state;
@@ -65,9 +140,12 @@ class NewComment extends Component {
 
 
 
-
-
-
+	/*******************************************************
+	Name: render.
+	Description:
+	Renders the correct html layout depending on the viewport size,
+	conditioned my the isMedium prop.
+	*********************************************************/
 	render(){
 		const {errors} = this.state;
 		const { width } = this.state;

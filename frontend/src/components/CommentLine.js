@@ -48,6 +48,8 @@ class CommentLine extends Component {
 
 	/*******************************************************************
 	Name: deleteComment
+	Params: none
+	Returns: nothing
 	Description:
 	makes the api call to delete our comment and dispatches our deleteComment
 	action syncing our redux store with our api database.
@@ -61,6 +63,8 @@ class CommentLine extends Component {
 
 	/*******************************************************************
 	Name: componentWillMount
+	Params: none
+	Returns: nothing
 	Description:
 	we set the state of our commentline to its whatever its corresponding
 	comment is. This way, when we edit our comment, our comment modal will

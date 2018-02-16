@@ -1,3 +1,20 @@
+/*******************************************************************************************
+Component: Posts.js
+Description:
+Contains the layout for our posts widget in the category view page.
+
+Defined Properties:
+none
+
+Class Methods:
+none
+
+React Methods:
+1. componentWillReceiveProps - see method description
+2. componentWillMount - see method description
+3. render - see method description - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import  * as api from '../utils/api';
@@ -10,7 +27,12 @@ class Posts extends Component {
 
 
 
-
+   /***********************************************
+   Name: componentWillReceiveProps
+   Description:
+   changes the displayed posts depending on the category
+   props received as passed in the CategoryView component.
+   ***********************************************/
    componentWillReceiveProps(nextProps){
      const { category } = nextProps;
 
@@ -27,6 +49,13 @@ class Posts extends Component {
    }
 
 
+   /***********************************************
+   Name: componentWillMount
+   Description:
+   Gets the proper posts depending on the props passed
+   by react-router-dom (depending on the url typed in
+   the browser).
+   ***********************************************/
 	 componentWillMount(){
 
       const { category } = this.props;
@@ -37,6 +66,14 @@ class Posts extends Component {
 
   	}
 
+
+  /***********************************************
+   Name: render
+   Description:
+   Renders our post widget if any results are retrieved,
+   otherwise a message is shown to the user indicating
+   the lack of any.
+   ***********************************************/
 	render(){
 
 		const { posts } = this.props;

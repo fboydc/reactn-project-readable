@@ -64,6 +64,8 @@ class CategoryView extends Component {
 
 	/********************************************************************
 	Name: handleWindowSizeChange
+	Params: none
+	Returns: nothing
 	Description:
 	dispatches our viewportChange action, which in turn updates our viewportSize
 	property of our store

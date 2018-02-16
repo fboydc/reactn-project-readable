@@ -1,3 +1,18 @@
+/*******************************************************************************************
+Component: PostLine.js
+Description:
+Displays all the post details for a single post in category view page.
+
+Defined Properties:
+1. deletePost - <Function>
+
+Class Methods:
+1. deletePost - see method description
+
+React Methods:
+1. render - see method description
+********************************************************************************************/
+
 import React, { Component } from 'react';
 import '../css/postlist.css';
 import { Link } from 'react-router-dom';
@@ -15,7 +30,14 @@ class PostLine extends Component {
 
 	}
 
-
+	/*********************************************************
+	Name: deletePost
+	Parameters: none
+	returns: nothing
+	Description:
+	makes a DELETE request to our api-server, and updates
+	the redux store accordingly
+	*********************************************************/
 	deletePost(){
 		const { id } = this.props.post;
 		this.props.deletePost(id);
@@ -25,7 +47,13 @@ class PostLine extends Component {
 
 
 
-
+	/*********************************************************
+	Name: render
+	Description:
+	renders the layout for each of our post inside our post widget,
+	in the category view page. We also verify that we load the correct
+	html depending on the size of our viewport
+	*********************************************************/
 	render(){
 		const { id, title, body, author, voteScore, commentCount, date, category } = this.props.post;
 		const { isSmall } = this.props;
